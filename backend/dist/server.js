@@ -13,11 +13,9 @@ const app = (0, express_1.default)();
 const port = process.env.PORT || 3001;
 // Middleware
 app.use(body_parser_1.default.json());
-app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
 // Routes
 app.use("/api/spotify", spotifyRoutes_1.default);
-// Example endpoint
 app.get("/", (req, res) => {
     res.send("Welcome to AudioAnalytica Backend");
 });
