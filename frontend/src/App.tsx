@@ -25,7 +25,7 @@ const theme = createTheme({
   typography: {
     fontFamily: ['"Ubuntu", "Readex Pro"', "Arial", "sans-serif"].join(","),
     allVariants: {
-      color: "#0e0e0e",
+      color: "#2e2d2d",
       fontWeight: 400,
       fontFamily: ['"Ubuntu", "Readex Pro"', "Arial", "sans-serif"].join(","),
       fontSize: "20px",
