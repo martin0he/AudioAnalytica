@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { Button, Typography, useTheme } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
 
 const Login = () => {
   const handleLogin = async () => {
@@ -55,12 +57,32 @@ const Login = () => {
     }
   }, []);
 
+  const theme = useTheme();
+
   return (
-    <div>
-      <h2>Login with Spotify</h2>
-      <button onClick={handleLogin}>Login with Spotify</button>
-      <a href="/home">Home</a>
-    </div>
+    <Button
+      onClick={handleLogin}
+      sx={{
+        textTransform: "none",
+        padding: "15px",
+        borderRadius: "14px",
+        backgroundColor: theme.palette.secondary.light,
+        boxShadow: "-1px 2px 3px #575459",
+        transition: "transform 0.3s ease-in-out",
+        "&:hover": {
+          transform: "translateY(4px)",
+          boxShadow: "-2px 3px 5px #575459",
+          backgroundColor: theme.palette.secondary.dark,
+        },
+      }}
+    >
+      <Typography
+        fontWeight={400}
+        sx={{ display: "flex", alignItems: "center", columnGap: "10px" }}
+      >
+        Sign in with Spotify <LoginIcon fontSize="inherit" />
+      </Typography>
+    </Button>
   );
 };
 
