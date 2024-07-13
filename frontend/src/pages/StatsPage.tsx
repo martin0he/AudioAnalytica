@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
-import SignOut from "../components/SignOut";
 
-const HomePage = () => {
+const StatsPage = () => {
   return (
     <Box
       display="flex"
@@ -10,10 +9,9 @@ const HomePage = () => {
       width="100vw"
       height="100vh"
     >
-      <h1>Home Page</h1>
-      <SignOut />
+      <h1>Stats Page</h1>
     </Box>
   );
 };
 
-export default HomePage;
+export default StatsPage;

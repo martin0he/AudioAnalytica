@@ -1,9 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Outlet,
+} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import { Navigate } from "react-router-dom";
 import OpeningPage from "./pages/OpeningPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Navbar from "./components/Navbar";
+import StatsPage from "./pages/StatsPage";
+import AiPage from "./pages/AiPage";
 
 const theme = createTheme({
   palette: {
@@ -37,8 +45,8 @@ export const isAuthenticated = () => {
   return localStorage.getItem("accessToken") !== null;
 };
 
-const AuthRoute = ({ children }: { children: JSX.Element }) => {
-  return isAuthenticated() ? children : <Navigate to="/" />;
+const AuthRoute = () => {
+  return isAuthenticated() ? <Outlet /> : <Navigate to="/" />;
 };
 
 const App: React.FC = () => {
@@ -47,17 +55,35 @@ const App: React.FC = () => {
       <Router>
         <Routes>
           <Route path="/" element={<OpeningPage />} />
-          <Route
-            path="/home"
-            element={
-              <AuthRoute>
-                <HomePage />
-              </AuthRoute>
-            }
-          />
-          <Route path="/example1" element={<HomePage />} />
-          <Route path="/example2" element={<HomePage />} />
-          <Route path="/example3" element={<HomePage />} />
+          <Route element={<AuthRoute />}>
+            <Route
+              path="/home"
+              element={
+                <>
+                  <Navbar />
+                  <HomePage />
+                </>
+              }
+            />
+            <Route
+              path="/stats"
+              element={
+                <>
+                  <Navbar />
+                  <StatsPage />
+                </>
+              }
+            />
+            <Route
+              path="/ai"
+              element={
+                <>
+                  <Navbar />
+                  <AiPage />
+                </>
+              }
+            />
+          </Route>
         </Routes>
       </Router>
     </ThemeProvider>
