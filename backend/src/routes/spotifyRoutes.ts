@@ -3,7 +3,6 @@ import {
   getAccessToken,
   getTestData,
   getUserProfile,
-  getUserProfileId,
   getUserTopSongs,
   loginToSpotify,
 } from "../controllers/spotifyController";
@@ -16,7 +15,6 @@ router.get("/login", loginToSpotify);
 router.get("/accessToken", getAccessToken);
 
 //user info
-router.get("/userProfileId", getUserProfileId);
 router.get("/userProfile", getUserProfile);
 router.get("/userTopSongs", getUserTopSongs);
 

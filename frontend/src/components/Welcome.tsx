@@ -1,8 +1,13 @@
+// src/Welcome.tsx
+import React from "react";
 import { Button, Link, Typography, useTheme } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useUser } from "../UserContext";
 
-const Welcome = () => {
+const Welcome: React.FC = () => {
   const theme = useTheme();
+  const { user } = useUser();
+
   return (
     <Link
       href="/home"
@@ -31,7 +36,8 @@ const Welcome = () => {
           fontWeight={400}
           sx={{ display: "flex", alignItems: "center", columnGap: "10px" }}
         >
-          Welcome, fakeUser <ArrowForwardIcon fontSize="inherit" />
+          Welcome, {user?.display_name}
+          <ArrowForwardIcon fontSize="inherit" />
         </Typography>
       </Button>
     </Link>

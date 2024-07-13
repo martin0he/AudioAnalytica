@@ -1,17 +1,13 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Outlet,
-} from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import { Navigate } from "react-router-dom";
-import OpeningPage from "./pages/OpeningPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Navbar from "./components/Navbar";
+import OpeningPage from "./pages/OpeningPage";
+import HomePage from "./pages/HomePage";
 import StatsPage from "./pages/StatsPage";
 import AiPage from "./pages/AiPage";
+import Navbar from "./components/Navbar";
+import AuthRoute from "./AuthRoute";
+import { UserProvider } from "./UserContext";
 
 const theme = createTheme({
   palette: {
@@ -45,47 +41,45 @@ export const isAuthenticated = () => {
   return localStorage.getItem("accessToken") !== null;
 };
 
-const AuthRoute = () => {
-  return isAuthenticated() ? <Outlet /> : <Navigate to="/" />;
-};
-
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<OpeningPage />} />
-          <Route element={<AuthRoute />}>
-            <Route
-              path="/home"
-              element={
-                <>
-                  <Navbar />
-                  <HomePage />
-                </>
-              }
-            />
-            <Route
-              path="/stats"
-              element={
-                <>
-                  <Navbar />
-                  <StatsPage />
-                </>
-              }
-            />
-            <Route
-              path="/ai"
-              element={
-                <>
-                  <Navbar />
-                  <AiPage />
-                </>
-              }
-            />
-          </Route>
-        </Routes>
-      </Router>
+      <UserProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<OpeningPage />} />
+            <Route element={<AuthRoute />}>
+              <Route
+                path="/home"
+                element={
+                  <>
+                    <Navbar />
+                    <HomePage />
+                  </>
+                }
+              />
+              <Route
+                path="/stats"
+                element={
+                  <>
+                    <Navbar />
+                    <StatsPage />
+                  </>
+                }
+              />
+              <Route
+                path="/ai"
+                element={
+                  <>
+                    <Navbar />
+                    <AiPage />
+                  </>
+                }
+              />
+            </Route>
+          </Routes>
+        </Router>
+      </UserProvider>
     </ThemeProvider>
   );
 };

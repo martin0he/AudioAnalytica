@@ -3,8 +3,10 @@ import Login from "../components/Login";
 import { isAuthenticated } from "../App";
 import Welcome from "../components/Welcome";
 import Typewriter from "typewriter-effect";
+import useSpotifyUser from "../useSpotifyUser";
 
 const OpeningPage = () => {
+  useSpotifyUser();
   return (
     <Box
       width="100vw"

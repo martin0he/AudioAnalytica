@@ -61,30 +61,6 @@ export const getAccessToken = async (req: Request, res: Response) => {
   }
 };
 
-// Endpoint to fetch user profile ID
-export const getUserProfileId = async (req: Request, res: Response) => {
-  const accessToken = req.headers.authorization?.split(" ")[1];
-
-  if (!accessToken) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
-  try {
-    const { data } = await axios.get(`${SPOTIFY_API_URL}/me`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    const userProfileId = data.id;
-    res.json({ userProfileId });
-  } catch (error) {
-    console.error("Failed to fetch user profile ID:", error);
-    res.status(500).json({ error: "Failed to fetch user profile ID" });
-  }
-};
-
-// Endpoint to fetch user profile information
 export const getUserProfile = async (req: Request, res: Response) => {
   const accessToken = req.headers.authorization?.split(" ")[1];
 
