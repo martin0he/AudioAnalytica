@@ -6,6 +6,7 @@ interface User {
   display_name: string;
   email: string;
   images: { url: string; width: number; height: number }[];
+  followers: { href: string; total: number };
 }
 
 interface UserContextType {

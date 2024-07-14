@@ -15,7 +15,7 @@ const SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize";
 const SPOTIFY_API_URL = "https://api.spotify.com/v1";
 
 export const loginToSpotify = async (req: Request, res: Response) => {
-  const scopes = "user-read-private user-read-email"; // Specify your scopes here
+  const scopes = "user-read-private user-read-email user-top-read"; // scopes
 
   const queryParams = new URLSearchParams({
     response_type: "code",
@@ -96,13 +96,46 @@ export const getUserTopSongs = async (req: Request, res: Response) => {
         Authorization: `Bearer ${accessToken}`,
       },
       params: {
-        limit: 5, // Fetch top 5 songs
+        limit: req.query.limit || 5, // Fetch top songs, default to 5 if not specified
       },
     });
 
     res.json(data.items);
   } catch (error) {
     console.error("Failed to fetch user top songs:", error);
-    res.status(500).json({ error: "Failed to fetch user top songs" });
+    if (axios.isAxiosError(error) && error.response) {
+      res.status(error.response.status).json({ error: error.response.data });
+    } else {
+      res.status(500).json({ error: "Failed to fetch user top songs" });
+    }
+  }
+};
+
+// Endpoint to fetch user's top songs
+export const getUserTopArtists = async (req: Request, res: Response) => {
+  const accessToken = req.headers.authorization?.split(" ")[1];
+
+  if (!accessToken) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const { data } = await axios.get(`${SPOTIFY_API_URL}/me/top/artists`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        limit: req.query.limit || 5, // Fetch top artists, default to 5 if not specified
+      },
+    });
+
+    res.json(data.items);
+  } catch (error) {
+    console.error("Failed to fetch user top songs:", error);
+    if (axios.isAxiosError(error) && error.response) {
+      res.status(error.response.status).json({ error: error.response.data });
+    } else {
+      res.status(500).json({ error: "Failed to fetch user top songs" });
+    }
   }
 };

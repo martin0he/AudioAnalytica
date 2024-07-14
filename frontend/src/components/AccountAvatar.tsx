@@ -37,7 +37,7 @@ const AccountAvatar = () => {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 40, height: 40 }} src={user?.images[0].url} />
+            <Avatar sx={{ width: 40, height: 40 }} src={user?.images[1].url} />
           </IconButton>
         </Tooltip>
       </Box>

@@ -1,11 +1,7 @@
 import { Box, Link, Typography } from "@mui/material";
-import { useUser } from "../UserContext";
-import useSpotifyUser from "../useSpotifyUser";
 import AccountAvatar from "./AccountAvatar";
 
 const Navbar = () => {
-  useSpotifyUser();
-  const { user } = useUser();
   return (
     <Box
       display="flex"
@@ -14,7 +10,7 @@ const Navbar = () => {
       width="100%"
       height="85px"
       sx={{
-        backgroundColor: "white",
+        backgroundColor: "#f5f5f4",
         position: "fixed",
         top: 0,
         zIndex: 100,

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserTopSongs = exports.getUserProfile = exports.getUserProfileId = exports.getAccessToken = exports.loginToSpotify = exports.getTestData = void 0;
+exports.getUserTopArtists = exports.getUserTopSongs = exports.getUserProfile = exports.getAccessToken = exports.loginToSpotify = exports.getTestData = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 const axios_1 = __importDefault(require("axios"));
 dotenv_1.default.config();
@@ -26,7 +26,7 @@ const redirectUri = process.env.SPOTIFY_REDIRECT_URI || "";
 const SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize";
 const SPOTIFY_API_URL = "https://api.spotify.com/v1";
 const loginToSpotify = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const scopes = "user-read-private user-read-email"; // Specify your scopes here
+    const scopes = "user-read-private user-read-email user-top-read"; // scopes
     const queryParams = new URLSearchParams({
         response_type: "code",
         client_id: clientId,
@@ -63,29 +63,6 @@ const getAccessToken = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getAccessToken = getAccessToken;
-// Endpoint to fetch user profile ID
-const getUserProfileId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    const accessToken = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
-    if (!accessToken) {
-        return res.status(401).json({ error: "Unauthorized" });
-    }
-    try {
-        const { data } = yield axios_1.default.get(`${SPOTIFY_API_URL}/me`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-        const userProfileId = data.id;
-        res.json({ userProfileId });
-    }
-    catch (error) {
-        console.error("Failed to fetch user profile ID:", error);
-        res.status(500).json({ error: "Failed to fetch user profile ID" });
-    }
-});
-exports.getUserProfileId = getUserProfileId;
-// Endpoint to fetch user profile information
 const getUserProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const accessToken = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
@@ -119,14 +96,48 @@ const getUserTopSongs = (req, res) => __awaiter(void 0, void 0, void 0, function
                 Authorization: `Bearer ${accessToken}`,
             },
             params: {
-                limit: 5, // Fetch top 5 songs
+                limit: req.query.limit || 5, // Fetch top songs, default to 5 if not specified
             },
         });
         res.json(data.items);
     }
     catch (error) {
         console.error("Failed to fetch user top songs:", error);
-        res.status(500).json({ error: "Failed to fetch user top songs" });
+        if (axios_1.default.isAxiosError(error) && error.response) {
+            res.status(error.response.status).json({ error: error.response.data });
+        }
+        else {
+            res.status(500).json({ error: "Failed to fetch user top songs" });
+        }
     }
 });
 exports.getUserTopSongs = getUserTopSongs;
+// Endpoint to fetch user's top songs
+const getUserTopArtists = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const accessToken = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
+    if (!accessToken) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+        const { data } = yield axios_1.default.get(`${SPOTIFY_API_URL}/me/top/artists`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+            params: {
+                limit: req.query.limit || 5, // Fetch top artists, default to 5 if not specified
+            },
+        });
+        res.json(data.items);
+    }
+    catch (error) {
+        console.error("Failed to fetch user top songs:", error);
+        if (axios_1.default.isAxiosError(error) && error.response) {
+            res.status(error.response.status).json({ error: error.response.data });
+        }
+        else {
+            res.status(500).json({ error: "Failed to fetch user top songs" });
+        }
+    }
+});
+exports.getUserTopArtists = getUserTopArtists;

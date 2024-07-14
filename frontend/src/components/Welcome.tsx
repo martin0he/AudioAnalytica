@@ -25,16 +25,24 @@ const Welcome: React.FC = () => {
           backgroundColor: theme.palette.secondary.light,
           boxShadow: "-1px 2px 3px #575459",
           transition: "transform 0.3s ease-in-out",
+          color: theme.palette.text.primary,
           "&:hover": {
-            transform: "translateY(4px)",
+            transform: "translateY(3px)",
             boxShadow: "-2px 3px 5px #575459",
-            backgroundColor: theme.palette.secondary.dark,
+            backgroundColor: "transparent",
+            color: theme.palette.secondary.dark,
+            border: `2px solid ${theme.palette.secondary.dark}`,
           },
         }}
       >
         <Typography
           fontWeight={400}
-          sx={{ display: "flex", alignItems: "center", columnGap: "10px" }}
+          color="inherit"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            columnGap: "10px",
+          }}
         >
           Welcome, {user?.display_name}
           <ArrowForwardIcon fontSize="inherit" />
