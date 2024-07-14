@@ -1,7 +1,11 @@
 import { Box, Link, Typography } from "@mui/material";
 import AccountAvatar from "./AccountAvatar";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const location = useLocation();
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <Box
       display="flex"
@@ -10,11 +14,10 @@ const Navbar = () => {
       width="100%"
       height="85px"
       sx={{
-        backgroundColor: "#f5f5f4",
+        backgroundColor: "tansparent",
         position: "fixed",
         top: 0,
         zIndex: 100,
-        boxShadow: 2,
       }}
     >
       <Link
@@ -22,7 +25,10 @@ const Navbar = () => {
         width="wrap-content"
         margin="25px"
         sx={{
-          textDecoration: "none",
+          textDecoration: isActive("/") ? "underline" : "none",
+          textDecorationColor: isActive("/")
+            ? "rgba(238,107,187,1)"
+            : "inherit",
           "&:hover": {
             textDecoration: "underline",
             textDecorationColor: "rgba(238,107,187,1)",
@@ -50,7 +56,7 @@ const Navbar = () => {
         display="flex"
         flexDirection="row"
         alignItems="center"
-        justifyContent="flex-end"
+        justifyContent="center"
         width="100%"
       >
         <Link
@@ -59,7 +65,10 @@ const Navbar = () => {
           marginY="25px"
           marginX="45px"
           sx={{
-            textDecoration: "none",
+            textDecoration: isActive("/home") ? "underline" : "none",
+            textDecorationColor: isActive("/home")
+              ? "rgba(238,107,187,1)"
+              : "inherit",
             "&:hover": {
               textDecoration: "underline",
               textDecorationColor: "rgba(238,107,187,1)",
@@ -89,7 +98,10 @@ const Navbar = () => {
           marginY="25px"
           marginX="45px"
           sx={{
-            textDecoration: "none",
+            textDecoration: isActive("/stats") ? "underline" : "none",
+            textDecorationColor: isActive("/stats")
+              ? "rgba(238,107,187,1)"
+              : "inherit",
             "&:hover": {
               textDecoration: "underline",
               textDecorationColor: "rgba(238,107,187,1)",
@@ -119,7 +131,10 @@ const Navbar = () => {
           marginY="25px"
           marginX="45px"
           sx={{
-            textDecoration: "none",
+            textDecoration: isActive("/ai") ? "underline" : "none",
+            textDecorationColor: isActive("/ai")
+              ? "rgba(238,107,187,1)"
+              : "inherit",
             "&:hover": {
               textDecoration: "underline",
               textDecorationColor: "rgba(238,107,187,1)",
@@ -143,15 +158,16 @@ const Navbar = () => {
             ai
           </Typography>
         </Link>
-        <Box
-          marginY="25px"
-          marginLeft="45px"
-          marginRight="40px"
-          width="wrap-content"
-          height="wrap-content"
-        >
-          <AccountAvatar />
-        </Box>
+      </Box>
+      <Box
+        marginY="25px"
+        marginLeft="45px"
+        marginRight="40px"
+        justifyContent={"flex-end"}
+        width="wrap-content"
+        height="wrap-content"
+      >
+        <AccountAvatar />
       </Box>
     </Box>
   );
