@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import SignOut from "../components/SignOut";
 
 const HomePage = () => {
   return (
@@ -11,7 +10,6 @@ const HomePage = () => {
       height="100vh"
     >
       <h1>Home Page</h1>
-      <SignOut />
     </Box>
   );
 };

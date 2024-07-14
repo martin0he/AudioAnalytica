@@ -45,7 +45,7 @@ const OpeningPage = () => {
 
         <Typewriter
           options={{
-            strings: ["AI Music Analzyer", "Spotify Stats"],
+            strings: ["AI Music Analyzer", "Spotify Stats"],
             autoStart: true,
             loop: true,
             delay: 75,

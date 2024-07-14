@@ -1,6 +1,11 @@
 import { Box, Link, Typography } from "@mui/material";
+import { useUser } from "../UserContext";
+import useSpotifyUser from "../useSpotifyUser";
+import AccountAvatar from "./AccountAvatar";
 
 const Navbar = () => {
+  useSpotifyUser();
+  const { user } = useUser();
   return (
     <Box
       display="flex"
@@ -117,7 +122,6 @@ const Navbar = () => {
           width="wrap-content"
           marginY="25px"
           marginX="45px"
-          marginRight="70px"
           sx={{
             textDecoration: "none",
             "&:hover": {
@@ -143,6 +147,15 @@ const Navbar = () => {
             ai
           </Typography>
         </Link>
+        <Box
+          marginY="25px"
+          marginLeft="45px"
+          marginRight="40px"
+          width="wrap-content"
+          height="wrap-content"
+        >
+          <AccountAvatar />
+        </Box>
       </Box>
     </Box>
   );
