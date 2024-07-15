@@ -181,22 +181,11 @@ export const getUserPlaylists = async (req: Request, res: Response) => {
   }
 
   try {
-    const userProfileResponse = await axios.get(`${SPOTIFY_API_URL}/me`, {
+    const { data } = await axios.get(`${SPOTIFY_API_URL}/me/playlists`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    const userId = userProfileResponse.data.id;
-
-    // Then, use the user ID to fetch their playlists
-    const { data } = await axios.get(
-      `${SPOTIFY_API_URL}/users/${userId}/playlists`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
 
     res.json(data.items);
   } catch (error) {

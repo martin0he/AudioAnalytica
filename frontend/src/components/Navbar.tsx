@@ -1,11 +1,11 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Link, Typography, useTheme } from "@mui/material";
 import AccountAvatar from "./AccountAvatar";
 import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
-
+  const theme = useTheme();
   return (
     <Box
       display="flex"
@@ -14,7 +14,7 @@ const Navbar = () => {
       width="100%"
       height="85px"
       sx={{
-        backgroundColor: "tansparent",
+        backgroundColor: theme.palette.background.default,
         position: "fixed",
         top: 0,
         zIndex: 100,
