@@ -2,6 +2,8 @@ import express from "express";
 import {
   getAccessToken,
   getTestData,
+  getUserFollowingArtists,
+  getUserPlaylists,
   getUserProfile,
   getUserTopArtists,
   getUserTopSongs,
@@ -19,5 +21,7 @@ router.get("/accessToken", getAccessToken);
 router.get("/userProfile", getUserProfile);
 router.get("/userTopSongs", getUserTopSongs);
 router.get("/userTopArtists", getUserTopArtists);
+router.get("/userFollowingArtists", getUserFollowingArtists);
+router.get("/userPlaylists", getUserPlaylists);
 
 export default router;

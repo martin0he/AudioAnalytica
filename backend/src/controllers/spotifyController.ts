@@ -15,7 +15,8 @@ const SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize";
 const SPOTIFY_API_URL = "https://api.spotify.com/v1";
 
 export const loginToSpotify = async (req: Request, res: Response) => {
-  const scopes = "user-read-private user-read-email user-top-read"; // scopes
+  const scopes =
+    "user-read-private user-read-email user-top-read user-follow-read playlist-read-private playlist-read-collaborative"; // scopes
 
   const queryParams = new URLSearchParams({
     response_type: "code",
@@ -136,6 +137,74 @@ export const getUserTopArtists = async (req: Request, res: Response) => {
       res.status(error.response.status).json({ error: error.response.data });
     } else {
       res.status(500).json({ error: "Failed to fetch user top songs" });
+    }
+  }
+};
+
+// Endpoint to fetch artists the user follows
+export const getUserFollowingArtists = async (req: Request, res: Response) => {
+  const accessToken = req.headers.authorization?.split(" ")[1];
+
+  if (!accessToken) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const { data } = await axios.get(`${SPOTIFY_API_URL}/me/following`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        type: "artist",
+      },
+    });
+
+    res.json(data.items);
+  } catch (error) {
+    console.error("Failed to fetch user's followed artists:", error);
+    if (axios.isAxiosError(error) && error.response) {
+      res.status(error.response.status).json({ error: error.response.data });
+    } else {
+      res
+        .status(500)
+        .json({ error: "Failed to fetch user's followed artists" });
+    }
+  }
+};
+
+// Endpoint to fetch user's playlists
+export const getUserPlaylists = async (req: Request, res: Response) => {
+  const accessToken = req.headers.authorization?.split(" ")[1];
+
+  if (!accessToken) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const userProfileResponse = await axios.get(`${SPOTIFY_API_URL}/me`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const userId = userProfileResponse.data.id;
+
+    // Then, use the user ID to fetch their playlists
+    const { data } = await axios.get(
+      `${SPOTIFY_API_URL}/users/${userId}/playlists`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    res.json(data.items);
+  } catch (error) {
+    console.error("Failed to fetch user's playlists:", error);
+    if (axios.isAxiosError(error) && error.response) {
+      res.status(error.response.status).json({ error: error.response.data });
+    } else {
+      res.status(500).json({ error: "Failed to fetch user's playlists" });
     }
   }
 };
