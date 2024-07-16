@@ -44,7 +44,18 @@ const UserSavedAlbumsGrid = ({ albums }: UserFollowingArtistsGridProps) => {
       <ScrollableContent>
         {albums && albums.length > 0 ? (
           albums.map((album, index) => (
-            <Grid item key={album.album.id} xs={12} sm={6} md={4} lg={3}>
+            <Grid
+              item
+              key={album.album.id}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              display="flex"
+              justifyContent="center"
+              alignItems="flex-start"
+              marginTop="6.5px"
+            >
               <Tooltip
                 arrow
                 title={`${album.album.name} by ${album.album.artists[0].name}`}

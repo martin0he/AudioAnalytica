@@ -46,7 +46,18 @@ const UserFollowingArtistsGrid = ({
       <ScrollableContent>
         {artists && artists.length > 0 ? (
           artists.map((artist, index) => (
-            <Grid item key={artist.id} xs={12} sm={6} md={4} lg={3}>
+            <Grid
+              item
+              key={artist.id}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              display="flex"
+              justifyContent="center"
+              alignItems="flex-start"
+              marginTop="6.5px"
+            >
               <Tooltip arrow title={artist.name} key={artist.id}>
                 <img
                   src={artist.images[0]?.url || ""}

@@ -33,24 +33,51 @@ const HomePage = () => {
       <Grid
         container
         padding="20px"
-        width="100%"
-        height="300px"
+        width="96%"
+        height="50vh"
         display="flex"
         alignItems="flex-start"
         justifyContent="center"
         marginTop="25px"
       >
-        <Grid item xs={4} width="fit-content" height="50vh">
+        <Grid
+          item
+          xs={4}
+          width="fit-content"
+          height="90%"
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-start"
+          sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
+        >
           <Typography marginBottom="10px">You Follow</Typography>
           <UserFollowingArtistsGrid artists={artists} />
         </Grid>
 
-        <Grid item xs={4} width="fit-content" height="50vh">
+        <Grid
+          item
+          xs={4}
+          width="fit-content"
+          height="90%"
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-start"
+          sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
+        >
           <Typography marginBottom="10px">Your Playlists</Typography>
           <UserPlaylistsGrid playlists={playlists} />
         </Grid>
 
-        <Grid item xs={4} width="fit-content" height="50vh">
+        <Grid
+          item
+          xs={4}
+          width="fit-content"
+          height="90%"
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-start"
+          sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
+        >
           <Typography marginBottom="10px">Saved Albums</Typography>
           <UserSavedAlbumsGrid albums={albums} />
         </Grid>

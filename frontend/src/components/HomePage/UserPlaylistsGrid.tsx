@@ -44,7 +44,18 @@ const UserPlaylistsGrid = ({ playlists }: UserPlaylistsGridProps) => {
       <ScrollableContent>
         {playlists && playlists.length > 0 ? (
           playlists.map((playlist, index) => (
-            <Grid item key={playlist.id} xs={12} sm={6} md={4} lg={3}>
+            <Grid
+              item
+              key={playlist.id}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              display="flex"
+              justifyContent="center"
+              alignItems="flex-start"
+              marginTop="6.5px"
+            >
               <Tooltip arrow title={playlist.name} key={playlist.id}>
                 <img
                   src={playlist.images[0]?.url || ""}
