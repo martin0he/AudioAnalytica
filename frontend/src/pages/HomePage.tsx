@@ -1,10 +1,10 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { useUser } from "../UserContext";
-import { useUserPlaylists } from "../useUserPlaylists";
+import { useUserPlaylists } from "../hooks/useUserPlaylists";
 import UserPlaylistsGrid from "../components/HomePage/UserPlaylistsGrid";
 import UserFollowingArtistsGrid from "../components/HomePage/UserFollowingArtistsGrid";
-import { useFollowingArtists } from "../useFollowingArtists";
-import { useSavedAlbums } from "../useSavedAlbums";
+import { useFollowingArtists } from "../hooks/useFollowingArtists";
+import { useSavedAlbums } from "../hooks/useSavedAlbums";
 import UserSavedAlbumsGrid from "../components/HomePage/UserSavedAlbumsGrid";
 
 const HomePage = () => {
@@ -36,17 +36,17 @@ const HomePage = () => {
         justifyContent="center"
         marginTop="25px"
       >
-        <Grid item md={4} sm={4} xs={12} width="fit-content">
+        <Grid item xs={4} width="fit-content" height="50vh">
           <Typography marginBottom="10px">You Follow</Typography>
           <UserFollowingArtistsGrid artists={artists} />
         </Grid>
 
-        <Grid item md={4} sm={4} xs={12} width="fit-content">
+        <Grid item xs={4} width="fit-content" height="50vh">
           <Typography marginBottom="10px">Your Playlists</Typography>
           <UserPlaylistsGrid playlists={playlists} />
         </Grid>
 
-        <Grid item md={4} sm={4} xs={12} width="fit-content">
+        <Grid item xs={4} width="fit-content" height="50vh">
           <Typography marginBottom="10px">Saved Albums</Typography>
           <UserSavedAlbumsGrid albums={albums} />
         </Grid>

@@ -1,6 +1,6 @@
 // src/useSpotifyUser.ts
 import { useEffect } from "react";
-import { useUser } from "./UserContext";
+import { useUser } from "../UserContext";
 import axios from "axios";
 
 const useSpotifyUser = () => {

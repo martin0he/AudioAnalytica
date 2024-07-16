@@ -1,7 +1,7 @@
-import { Grid, keyframes, Tooltip, Typography } from "@mui/material";
+import { Box, Grid, keyframes, Tooltip, Typography } from "@mui/material";
 import { useState } from "react";
 import { styled } from "@mui/system";
-import { Artist } from "../../useFollowingArtists";
+import { Artist } from "../../hooks/useFollowingArtists";
 
 interface UserFollowingArtistsGridProps {
   artists: Artist[];
@@ -17,7 +17,7 @@ const hoverStyle = {
 };
 
 const ScrollableGridContainer = styled(Grid)({
-  height: "360px",
+  height: "100%",
   overflow: "hidden",
   position: "relative",
   marginTop: "10px",
@@ -66,7 +66,13 @@ const UserFollowingArtistsGrid = ({
             </Grid>
           ))
         ) : (
-          <Typography>na</Typography>
+          <Box
+            display="flex"
+            alignItems="flex-start"
+            justifyContent="flex-start"
+          >
+            <Typography>N/A</Typography>
+          </Box>
         )}
       </ScrollableContent>
     </ScrollableGridContainer>

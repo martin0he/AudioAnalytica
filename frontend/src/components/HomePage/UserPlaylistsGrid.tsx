@@ -1,5 +1,5 @@
-import { Grid, keyframes, Tooltip, Typography } from "@mui/material";
-import { Playlist } from "../../useUserPlaylists";
+import { Box, Grid, keyframes, Tooltip, Typography } from "@mui/material";
+import { Playlist } from "../../hooks/useUserPlaylists";
 import { useState } from "react";
 import { styled } from "@mui/system";
 
@@ -17,7 +17,7 @@ const hoverStyle = {
 };
 
 const ScrollableGridContainer = styled(Grid)({
-  height: "360px",
+  height: "100%",
   overflow: "hidden",
   position: "relative",
   marginTop: "10px",
@@ -64,7 +64,13 @@ const UserPlaylistsGrid = ({ playlists }: UserPlaylistsGridProps) => {
             </Grid>
           ))
         ) : (
-          <Typography>na</Typography>
+          <Box
+            display="flex"
+            alignItems="flex-start"
+            justifyContent="flex-start"
+          >
+            <Typography>N/A</Typography>
+          </Box>
         )}
       </ScrollableContent>
     </ScrollableGridContainer>
