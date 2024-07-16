@@ -1,12 +1,29 @@
-import { Box, Link, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Link,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import AccountAvatar from "./AccountAvatar";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
   const theme = useTheme();
-  return (
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+
+  const menuStyle = {
+    background:
+      "linear-gradient(to bottom, rgba(238,107,187,1) 35%, rgba(208,1,1,1) 100%)",
+    borderRadius: "50%",
+    marginRight: "27px",
+  };
+
+  return !isSmall ? (
     <Box
       display="flex"
       flexDirection="row"
@@ -169,6 +186,58 @@ const Navbar = () => {
       >
         <AccountAvatar />
       </Box>
+    </Box>
+  ) : (
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="space-between"
+      width="100%"
+      height="85px"
+      sx={{
+        backgroundColor: theme.palette.background.default,
+        position: "fixed",
+        top: 0,
+        zIndex: 100,
+      }}
+    >
+      <Link
+        href="/"
+        width="wrap-content"
+        margin="25px"
+        sx={{
+          textDecoration: isActive("/") ? "underline" : "none",
+          textDecorationColor: isActive("/")
+            ? "rgba(238,107,187,1)"
+            : "inherit",
+          "&:hover": {
+            textDecoration: "underline",
+            textDecorationColor: "rgba(238,107,187,1)",
+          },
+        }}
+      >
+        <Typography
+          fontSize={50}
+          fontWeight={500}
+          fontFamily={"Abril Fatface"}
+          sx={{
+            backgroundcolor: "transparent",
+            backgroundImage: `linear-gradient(to bottom, rgba(238,107,187,1) 35%, rgba(208,1,1,1) 100%)`,
+            backgroundSize: "100%",
+            backgroundRepeat: "repeat",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          AA
+        </Typography>
+      </Link>
+
+      <IconButton style={menuStyle}>
+        <MenuIcon style={{ color: "white" }} />
+      </IconButton>
     </Box>
   );
 };

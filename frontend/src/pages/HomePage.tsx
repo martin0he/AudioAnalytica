@@ -23,7 +23,11 @@ const HomePage = () => {
       height="85vh"
       marginTop="95px"
     >
-      <Typography marginTop="55px" fontFamily="Abril Fatface" fontSize={62}>
+      <Typography
+        marginTop="55px"
+        fontFamily="Abril Fatface"
+        sx={{ fontSize: { md: 62, sm: 52, xs: 42 } }}
+      >
         Welcome, {user.display_name}
       </Typography>
       <Grid
