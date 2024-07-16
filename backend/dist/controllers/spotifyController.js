@@ -180,14 +180,7 @@ const getUserPlaylists = (req, res) => __awaiter(void 0, void 0, void 0, functio
         return res.status(401).json({ error: "Unauthorized" });
     }
     try {
-        const userProfileResponse = yield axios_1.default.get(`${SPOTIFY_API_URL}/me`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-        const userId = userProfileResponse.data.id;
-        // Then, use the user ID to fetch their playlists
-        const { data } = yield axios_1.default.get(`${SPOTIFY_API_URL}/users/${userId}/playlists`, {
+        const { data } = yield axios_1.default.get(`${SPOTIFY_API_URL}/me/playlists`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
