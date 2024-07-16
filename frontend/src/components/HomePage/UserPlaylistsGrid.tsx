@@ -1,6 +1,7 @@
-import { Grid, Tooltip, Typography } from "@mui/material";
+import { Grid, keyframes, Tooltip, Typography } from "@mui/material";
 import { Playlist } from "../../useUserPlaylists";
 import { useState } from "react";
+import { styled } from "@mui/system";
 
 interface UserPlaylistsGridProps {
   playlists: Playlist[];
@@ -15,36 +16,58 @@ const hoverStyle = {
   boxShadow: "1px 4px 5px rgba(0, 0, 0, 0.6)",
 };
 
+const ScrollableGridContainer = styled(Grid)({
+  height: "360px",
+  overflow: "hidden",
+  position: "relative",
+  marginTop: "10px",
+  padding: "10px",
+});
+
+const scrollAnimation = keyframes`
+  0% { transform: translateY(0); } /* Start at the top */
+  48%, 51.2% { transform: translateY(calc(-100% + 350px)); } /* Transition to bottom and pause for 0.8 seconds */
+  100% { transform: translateY(0); } /* Transition back to top */
+`;
+
+const ScrollableContent = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexWrap: "wrap",
+  animation: `${scrollAnimation} 25s linear infinite`,
+}));
+
 const UserPlaylistsGrid = ({ playlists }: UserPlaylistsGridProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <Grid container spacing={1}>
-      {playlists && playlists.length > 0 ? (
-        playlists.map((playlist, index) => (
-          <Grid item key={playlist.id} xs="auto">
-            <Tooltip arrow title={playlist.name} key={playlist.id}>
-              <img
-                src={playlist.images[0]?.url || ""}
-                alt={playlist.name}
-                width="90px"
-                height="90px"
-                style={{
-                  borderRadius: "13px",
-                  boxShadow: "1px 1px 2px #000",
-                  ...(hoveredIndex === index ? hoverStyle : {}),
-                  ...bounceAnimation,
-                }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              />
-            </Tooltip>
-          </Grid>
-        ))
-      ) : (
-        <Typography>na</Typography>
-      )}
-    </Grid>
+    <ScrollableGridContainer container spacing={1}>
+      <ScrollableContent>
+        {playlists && playlists.length > 0 ? (
+          playlists.map((playlist, index) => (
+            <Grid item key={playlist.id} xs={12} sm={6} md={4} lg={3}>
+              <Tooltip arrow title={playlist.name} key={playlist.id}>
+                <img
+                  src={playlist.images[0]?.url || ""}
+                  alt={playlist.name}
+                  width="90px"
+                  height="90px"
+                  style={{
+                    borderRadius: "13px",
+                    boxShadow: "1px 1px 2px #000",
+                    ...(hoveredIndex === index ? hoverStyle : {}),
+                    ...bounceAnimation,
+                  }}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                />
+              </Tooltip>
+            </Grid>
+          ))
+        ) : (
+          <Typography>na</Typography>
+        )}
+      </ScrollableContent>
+    </ScrollableGridContainer>
   );
 };
 
