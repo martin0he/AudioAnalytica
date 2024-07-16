@@ -16,4 +16,5 @@ router.get("/userTopSongs", spotifyController_1.getUserTopSongs);
 router.get("/userTopArtists", spotifyController_1.getUserTopArtists);
 router.get("/userFollowingArtists", spotifyController_1.getUserFollowingArtists);
 router.get("/userPlaylists", spotifyController_1.getUserPlaylists);
+router.get("/userSavedAlbums", spotifyController_1.getUserSavedAlbums);
 exports.default = router;

@@ -5,6 +5,7 @@ import {
   getUserFollowingArtists,
   getUserPlaylists,
   getUserProfile,
+  getUserSavedAlbums,
   getUserTopArtists,
   getUserTopSongs,
   loginToSpotify,
@@ -23,5 +24,6 @@ router.get("/userTopSongs", getUserTopSongs);
 router.get("/userTopArtists", getUserTopArtists);
 router.get("/userFollowingArtists", getUserFollowingArtists);
 router.get("/userPlaylists", getUserPlaylists);
+router.get("/userSavedAlbums", getUserSavedAlbums);
 
 export default router;

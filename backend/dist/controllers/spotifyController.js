@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserPlaylists = exports.getUserFollowingArtists = exports.getUserTopArtists = exports.getUserTopSongs = exports.getUserProfile = exports.getAccessToken = exports.loginToSpotify = exports.getTestData = void 0;
+exports.getUserSavedAlbums = exports.getUserPlaylists = exports.getUserFollowingArtists = exports.getUserTopArtists = exports.getUserTopSongs = exports.getUserProfile = exports.getAccessToken = exports.loginToSpotify = exports.getTestData = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 const axios_1 = __importDefault(require("axios"));
 dotenv_1.default.config();
@@ -26,7 +26,7 @@ const redirectUri = process.env.SPOTIFY_REDIRECT_URI || "";
 const SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize";
 const SPOTIFY_API_URL = "https://api.spotify.com/v1";
 const loginToSpotify = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const scopes = "user-read-private user-read-email user-top-read user-follow-read playlist-read-private playlist-read-collaborative"; // scopes
+    const scopes = "user-read-private user-read-email user-top-read user-follow-read playlist-read-private playlist-read-collaborative user-library-read"; // scopes
     const queryParams = new URLSearchParams({
         response_type: "code",
         client_id: clientId,
@@ -157,7 +157,7 @@ const getUserFollowingArtists = (req, res) => __awaiter(void 0, void 0, void 0, 
                 type: "artist",
             },
         });
-        res.json(data.items);
+        res.json(data.artists.items);
     }
     catch (error) {
         console.error("Failed to fetch user's followed artists:", error);
@@ -198,3 +198,29 @@ const getUserPlaylists = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getUserPlaylists = getUserPlaylists;
+// Endpoint to fetch user's savedalbums
+const getUserSavedAlbums = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const accessToken = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
+    if (!accessToken) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+        const { data } = yield axios_1.default.get(`${SPOTIFY_API_URL}/me/albums`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+        res.json(data.items);
+    }
+    catch (error) {
+        console.error("Failed to fetch user's playlists:", error);
+        if (axios_1.default.isAxiosError(error) && error.response) {
+            res.status(error.response.status).json({ error: error.response.data });
+        }
+        else {
+            res.status(500).json({ error: "Failed to fetch user's playlists" });
+        }
+    }
+});
+exports.getUserSavedAlbums = getUserSavedAlbums;

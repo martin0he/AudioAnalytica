@@ -1,17 +1,17 @@
-import {
-  Box,
-  CircularProgress,
-  Grid,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { useUser } from "../UserContext";
 import { useUserPlaylists } from "../useUserPlaylists";
 import UserPlaylistsGrid from "../components/HomePage/UserPlaylistsGrid";
+import UserFollowingArtistsGrid from "../components/HomePage/UserFollowingArtistsGrid";
+import { useFollowingArtists } from "../useFollowingArtists";
+import { useSavedAlbums } from "../useSavedAlbums";
+import UserSavedAlbumsGrid from "../components/HomePage/UserSavedAlbumsGrid";
 
 const HomePage = () => {
   const { user } = useUser();
   const { playlists } = useUserPlaylists();
+  const { artists } = useFollowingArtists();
+  const { albums } = useSavedAlbums();
 
   return user ? (
     <Box
@@ -37,7 +37,8 @@ const HomePage = () => {
         marginTop="25px"
       >
         <Grid item md={4} sm={4} xs={12} width="fit-content">
-          <Typography>first column</Typography>
+          <Typography marginBottom="10px">You Follow</Typography>
+          <UserFollowingArtistsGrid artists={artists} />
         </Grid>
 
         <Grid item md={4} sm={4} xs={12} width="fit-content">
@@ -46,7 +47,8 @@ const HomePage = () => {
         </Grid>
 
         <Grid item md={4} sm={4} xs={12} width="fit-content">
-          <Typography>third column</Typography>
+          <Typography marginBottom="10px">Saved Albums</Typography>
+          <UserSavedAlbumsGrid albums={albums} />
         </Grid>
       </Grid>
     </Box>
