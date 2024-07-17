@@ -38,20 +38,39 @@ const OpeningPage = () => {
             backgroundClip: "text",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
+            fontSize: {
+              xs: "60px",
+              sm: "80px",
+              md: "100px",
+              lg: "120px",
+              xl: "140px",
+            },
           }}
         >
           AudioAnalytica
         </Typography>
 
-        <Typewriter
-          options={{
-            strings: ["AI Music Analyzer", "Spotify Stats"],
-            autoStart: true,
-            loop: true,
-            delay: 75,
-            skipAddStyles: true,
+        <Typography
+          sx={{
+            fontSize: {
+              xs: "15px",
+              sm: "17px",
+              md: "20px",
+              lg: "30px",
+              xl: "40px",
+            },
           }}
-        />
+        >
+          <Typewriter
+            options={{
+              strings: ["AI Music Analyzer", "Spotify Stats"],
+              autoStart: true,
+              loop: true,
+              delay: 75,
+              skipAddStyles: true,
+            }}
+          />
+        </Typography>
 
         {isAuthenticated() ? (
           <Box marginTop="60px">

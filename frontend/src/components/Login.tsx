@@ -78,7 +78,16 @@ const Login = () => {
     >
       <Typography
         fontWeight={400}
-        sx={{ display: "flex", alignItems: "center", columnGap: "10px" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          columnGap: "10px",
+          fontSize: {
+            xs: "15px",
+            sm: "17px",
+            md: "20px",
+          },
+        }}
       >
         Sign in with Spotify <LoginIcon fontSize="inherit" />
       </Typography>

@@ -42,6 +42,11 @@ const Welcome: React.FC = () => {
             display: "flex",
             alignItems: "center",
             columnGap: "10px",
+            fontSize: {
+              xs: "15px",
+              sm: "17px",
+              md: "20px",
+            },
           }}
         >
           Welcome, {user?.display_name}
