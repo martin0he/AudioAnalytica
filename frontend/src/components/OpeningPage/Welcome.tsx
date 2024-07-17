@@ -2,7 +2,7 @@
 import React from "react";
 import { Button, Link, Typography, useTheme } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useUser } from "../UserContext";
+import { useUser } from "../../UserContext";
 
 const Welcome: React.FC = () => {
   const theme = useTheme();

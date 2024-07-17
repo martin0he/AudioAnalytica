@@ -5,7 +5,7 @@ import OpeningPage from "./pages/OpeningPage";
 import HomePage from "./pages/HomePage";
 import StatsPage from "./pages/StatsPage";
 import AiPage from "./pages/AiPage";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navigation/Navbar";
 import AuthRoute from "./AuthRoute";
 import { UserProvider } from "./UserContext";
 

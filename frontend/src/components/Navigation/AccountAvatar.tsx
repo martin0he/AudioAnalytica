@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Tooltip from "@mui/material/Tooltip";
 import { Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useUser } from "../UserContext";
+import { useUser } from "../../UserContext";
 
 const AccountAvatar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

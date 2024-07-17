@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import Login from "../components/Login";
+import Login from "../components/OpeningPage/Login";
 import { isAuthenticated } from "../App";
-import Welcome from "../components/Welcome";
+import Welcome from "../components/OpeningPage/Welcome";
 import Typewriter from "typewriter-effect";
 import useSpotifyUser from "../hooks/useSpotifyUser";
 
