@@ -34,7 +34,7 @@ const HomePage = () => {
         container
         padding="20px"
         width="96%"
-        height="50vh"
+        height="360px"
         display="flex"
         alignItems="flex-start"
         justifyContent="center"

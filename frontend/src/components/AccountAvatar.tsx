@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Tooltip from "@mui/material/Tooltip";
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useUser } from "../UserContext";
 
 const AccountAvatar = () => {
@@ -25,6 +25,10 @@ const AccountAvatar = () => {
   };
 
   const { user } = useUser();
+
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -52,20 +56,17 @@ const AccountAvatar = () => {
           sx: {
             borderRadius: "10px",
             overflow: "visible",
+            height: "fit-content",
+            width: "fit-content",
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
-            "& .MuiAvatar-root": {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
+
             "&::before": {
               content: '""',
               display: "block",
               position: "absolute",
-              top: 0,
-              right: 14,
+              top: isSmall ? 14 : 0,
+              right: isSmall ? 0 : 14,
               width: 10,
               height: 10,
               bgcolor: "background.paper",
@@ -74,12 +75,18 @@ const AccountAvatar = () => {
             },
           },
         }}
-        transformOrigin={{ horizontal: "right", vertical: "top" }}
-        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        transformOrigin={{
+          horizontal: "right",
+          vertical: isSmall ? "center" : "top",
+        }}
+        anchorOrigin={{
+          horizontal: isSmall ? "left" : "right",
+          vertical: isSmall ? "center" : "bottom",
+        }}
       >
         <MenuItem onClick={handleSignOut}>
-          <LogoutIcon />{" "}
-          <Typography marginX="10px" fontSize={17}>
+          <LogoutIcon sx={{ fontSize: "18px" }} />
+          <Typography marginX="10px" fontSize={16}>
             Sign Out
           </Typography>
         </MenuItem>

@@ -9,8 +9,11 @@ import {
 import AccountAvatar from "./AccountAvatar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
   const theme = useTheme();
@@ -202,6 +205,7 @@ const Navbar = () => {
         zIndex: 100,
       }}
     >
+      <Sidebar isOpen={isSidebarOpen} setDrawerOpen={setIsSidebarOpen} />
       <Link
         href="/"
         width="wrap-content"
@@ -235,7 +239,7 @@ const Navbar = () => {
         </Typography>
       </Link>
 
-      <IconButton style={menuStyle}>
+      <IconButton onClick={() => setIsSidebarOpen(true)} style={menuStyle}>
         <MenuIcon style={{ color: "white" }} />
       </IconButton>
     </Box>
