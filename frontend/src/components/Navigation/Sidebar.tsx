@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, setDrawerOpen }: SidebarProps) => {
       PaperProps={{
         style: {
           width: "fit-content",
-          padding: "7px",
+          padding: "7px 14px",
           display: "flex",
           flexDirection: "column",
           height: "100%",
