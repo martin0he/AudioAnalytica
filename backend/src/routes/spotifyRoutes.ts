@@ -3,10 +3,13 @@ import {
   getAccessToken,
   getTestData,
   getUserFollowingArtists,
+  getUserListeningTime,
   getUserPlaylists,
   getUserProfile,
+  getUserRecentTracks,
   getUserSavedAlbums,
   getUserTopArtists,
+  getUserTopGenres,
   getUserTopSongs,
   loginToSpotify,
 } from "../controllers/spotifyController";
@@ -18,12 +21,21 @@ router.get("/data", getTestData);
 router.get("/login", loginToSpotify);
 router.get("/accessToken", getAccessToken);
 
-//user info
+//user data
 router.get("/userProfile", getUserProfile);
+
+// top data
 router.get("/userTopSongs", getUserTopSongs);
 router.get("/userTopArtists", getUserTopArtists);
+router.get("/userTopGenres", getUserTopGenres);
+
+// library data
 router.get("/userFollowingArtists", getUserFollowingArtists);
 router.get("/userPlaylists", getUserPlaylists);
 router.get("/userSavedAlbums", getUserSavedAlbums);
+router.get("/userRecentTracks", getUserRecentTracks);
+
+// misc
+router.get("/userListeningTime", getUserListeningTime);
 
 export default router;
