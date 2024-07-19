@@ -44,10 +44,10 @@ const StatsPage = () => {
               borderRadius: "15px",
             },
             "&::-webkit-scrollbar-thumb": {
-              background: "linear-gradient(45deg, #924FE9, #3C38E5)",
+              background: "linear-gradient(45deg, #924FE9, #3e67f9)",
               borderRadius: "15px",
               "&:hover": {
-                background: "linear-gradient(45deg, #6019be, #0b099a)",
+                background: "linear-gradient(45deg, #6019be, #0630c6)",
               },
             },
           }}
