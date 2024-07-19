@@ -1,4 +1,11 @@
-import { Box, Grid, keyframes, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  keyframes,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { Playlist } from "../../hooks/useUserPlaylists";
 import { useState } from "react";
 import { styled } from "@mui/system";
@@ -80,7 +87,7 @@ const UserPlaylistsGrid = ({ playlists }: UserPlaylistsGridProps) => {
             alignItems="flex-start"
             justifyContent="flex-start"
           >
-            <Typography>N/A</Typography>
+            <CircularProgress color="primary" />
           </Box>
         )}
       </ScrollableContent>

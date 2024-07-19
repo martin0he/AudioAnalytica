@@ -1,4 +1,11 @@
-import { Box, Grid, keyframes, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  keyframes,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { styled } from "@mui/system";
 import { Artist } from "../../hooks/useFollowingArtists";
@@ -82,7 +89,7 @@ const UserFollowingArtistsGrid = ({
             alignItems="flex-start"
             justifyContent="flex-start"
           >
-            <Typography>N/A</Typography>
+            <CircularProgress color="primary" />
           </Box>
         )}
       </ScrollableContent>

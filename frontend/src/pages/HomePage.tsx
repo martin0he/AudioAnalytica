@@ -28,7 +28,7 @@ const HomePage = () => {
       justifyContent="flex-start"
       alignItems="center"
       width="100vw"
-      height="85vh"
+      height="calc(100vh - 150px)"
       marginTop="95px"
     >
       <Typography
@@ -41,8 +41,8 @@ const HomePage = () => {
       <Grid
         container
         padding="20px"
-        width="96%"
-        height="360px"
+        width="93%"
+        height="75%"
         display="flex"
         alignItems="flex-start"
         justifyContent="center"
@@ -52,7 +52,7 @@ const HomePage = () => {
           item
           xs={4}
           width="fit-content"
-          height="90%"
+          height="100%"
           display="flex"
           flexDirection="column"
           justifyContent="flex-start"
@@ -66,7 +66,7 @@ const HomePage = () => {
           item
           xs={4}
           width="fit-content"
-          height="90%"
+          height="100%"
           display="flex"
           flexDirection="column"
           justifyContent="flex-start"
@@ -80,7 +80,7 @@ const HomePage = () => {
           item
           xs={4}
           width="fit-content"
-          height="90%"
+          height="100%"
           display="flex"
           flexDirection="column"
           justifyContent="flex-start"
