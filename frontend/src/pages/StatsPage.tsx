@@ -1,13 +1,16 @@
 import { Box, Typography } from "@mui/material";
 import CardRow from "../components/StatsPage/CardRow";
 import { useTopArtists } from "../hooks/useTopArtists";
-import { useTopSongs } from "../hooks/useTopTracks";
+import { useTopSongs } from "../hooks/useTopSongs";
 import GenreWordCloud from "../components/StatsPage/GenreWordCloud";
 import useWindowWidth from "../hooks/useWindowWidth";
+import RecentTracksGrid from "../components/StatsPage/RecentTracksGrid";
+import { useRecentSongs } from "../hooks/useRecentSongs";
 
 const StatsPage = () => {
   const { artists } = useTopArtists();
   const { songs } = useTopSongs();
+  const { recentSongs } = useRecentSongs();
   const windowWidth = useWindowWidth();
 
   return (
@@ -45,6 +48,10 @@ const StatsPage = () => {
         >
           <GenreWordCloud width={windowWidth * 0.92} height={280} />
         </Box>
+        <Typography fontSize={24} fontFamily={"Abril Fatface"}>
+          Personal Insights
+        </Typography>
+        <RecentTracksGrid data={recentSongs} />
       </Box>
     </Box>
   );

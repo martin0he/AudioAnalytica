@@ -33,7 +33,7 @@ router.get("/userTopGenres", getUserTopGenres);
 router.get("/userFollowingArtists", getUserFollowingArtists);
 router.get("/userPlaylists", getUserPlaylists);
 router.get("/userSavedAlbums", getUserSavedAlbums);
-router.get("/userRecentTracks", getUserRecentTracks);
+router.get("/userRecentSongs", getUserRecentTracks);
 
 // misc
 router.get("/userListeningTime", getUserListeningTime);
