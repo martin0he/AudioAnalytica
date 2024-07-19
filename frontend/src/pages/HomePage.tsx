@@ -1,4 +1,10 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { useUser } from "../UserContext";
 import { useUserPlaylists } from "../hooks/useUserPlaylists";
 import UserPlaylistsGrid from "../components/HomePage/UserPlaylistsGrid";
@@ -12,6 +18,8 @@ const HomePage = () => {
   const { playlists } = useUserPlaylists();
   const { artists } = useFollowingArtists();
   const { albums } = useSavedAlbums();
+
+  const theme = useTheme();
 
   return user ? (
     <Box
@@ -92,7 +100,7 @@ const HomePage = () => {
       height="85vh"
       marginTop="85px"
     >
-      <CircularProgress />
+      <CircularProgress sx={{ color: theme.palette.primary.main }} />
     </Box>
   );
 };

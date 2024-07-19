@@ -12,12 +12,10 @@ import { UserProvider } from "./UserContext";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#556cd6",
+      main: "rgba(238,107,187,1)",
     },
     secondary: {
-      main: "#5f1a7f",
-      light: "#cea9db",
-      dark: "#a88cc5",
+      main: "#556cd6",
     },
     error: {
       main: "#ff1744",
@@ -29,7 +27,7 @@ const theme = createTheme({
   typography: {
     fontFamily: ['"Ubuntu", "Readex Pro"', "Arial", "sans-serif"].join(","),
     allVariants: {
-      color: "#2e2d2d",
+      color: "#313030",
       fontWeight: 400,
       fontFamily: ['"Ubuntu", "Readex Pro"', "Arial", "sans-serif"].join(","),
       fontSize: "20px",
