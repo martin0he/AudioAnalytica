@@ -1,4 +1,11 @@
-import { Box, Grid, keyframes, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  keyframes,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { styled } from "@mui/system";
 import { AlbumObject } from "../../hooks/useSavedAlbums";
@@ -84,7 +91,7 @@ const UserSavedAlbumsGrid = ({ albums }: UserFollowingArtistsGridProps) => {
             alignItems="flex-start"
             justifyContent="flex-start"
           >
-            <Typography>N/A</Typography>
+            <CircularProgress color="primary" />
           </Box>
         )}
       </ScrollableContent>
