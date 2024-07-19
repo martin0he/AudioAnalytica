@@ -29,12 +29,12 @@ const StatsPage = () => {
           display="flex"
           flexDirection="row"
           height="fit-content"
-          width="100%"
-          overflow="auto"
           columnGap="12px"
           paddingY="12px"
           paddingX="5px"
           sx={{
+            width: "100%",
+            overflowX: "auto",
             "&::-webkit-scrollbar": {
               width: "18px",
               height: "8px",
@@ -54,9 +54,11 @@ const StatsPage = () => {
         >
           {Array.from({ length: 20 }).map((_, index) => (
             <Card
+              key={index}
               title={"Rihanna"}
               rank={index}
               imgUrl={"https://picsum.photos/200"}
+              subtitle="Donda Seventy"
             />
           ))}
         </Box>

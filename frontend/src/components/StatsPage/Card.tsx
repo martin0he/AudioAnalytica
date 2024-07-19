@@ -30,6 +30,8 @@ const Card = ({
         justifyContent: "center",
         alignItems: "center",
         boxShadow: "-1px 3px 3px rgba(0,0,0, 0.4)",
+        minWidth: "320px",
+        flex: "0 0 auto",
       }}
     >
       <Box
@@ -90,7 +92,7 @@ const Card = ({
                 {title}
               </Typography>
               {subtitle && (
-                <Typography sx={{ mt: "4px" }} fontSize={15}>
+                <Typography sx={{ mt: "-4px" }} fontSize={15}>
                   {subtitle}
                 </Typography>
               )}
