@@ -242,7 +242,7 @@ export const getUserTopGenres = async (req: Request, res: Response) => {
       },
       params: {
         limit: 50,
-        time_range: "long_term",
+        time_range: "medium_term",
       },
     });
 

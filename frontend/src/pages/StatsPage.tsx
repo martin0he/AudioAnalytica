@@ -2,20 +2,20 @@ import { Box, Typography } from "@mui/material";
 import CardRow from "../components/StatsPage/CardRow";
 import { useTopArtists } from "../hooks/useTopArtists";
 import { useTopSongs } from "../hooks/useTopTracks";
-import { useTopGenres } from "../hooks/useTopGenres";
-import GenreRow from "../components/StatsPage/GenreRow";
+import GenreWordCloud from "../components/StatsPage/GenreWordCloud";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 const StatsPage = () => {
   const { artists } = useTopArtists();
   const { songs } = useTopSongs();
-  const { genres } = useTopGenres();
+  const windowWidth = useWindowWidth();
 
   return (
     <Box
       display="flex"
       justifyContent="flex-start"
       alignItems="flex-start"
-      width="calc(100vw - 54px)"
+      width="calc(100vw - 80px)"
       height="calc(100vh - 150px)"
       marginTop="95px"
       paddingY="15px"
@@ -35,8 +35,16 @@ const StatsPage = () => {
         </Typography>
         <CardRow heading={"Artists"} data={artists} />
         <CardRow heading={"Songs"} data={songs} />
-        <CardRow heading={"Songs"} data={songs} />
-        <CardRow heading={"Songs"} data={songs} />
+        <Box
+          width="100%"
+          height="fit-content"
+          display="flex"
+          justifyContent="flex"
+          alignItems="flex"
+          marginY="30px"
+        >
+          <GenreWordCloud width={windowWidth * 0.92} height={280} />
+        </Box>
       </Box>
     </Box>
   );
