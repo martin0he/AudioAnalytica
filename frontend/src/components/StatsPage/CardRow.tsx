@@ -8,7 +8,7 @@ interface CardRowProps {
 
 const CardRow = ({ heading, data }: CardRowProps) => {
   return (
-    <>
+    <Box marginTop="15px" display="flex" flexDirection="column" width="100%">
       <Typography>Top {heading}</Typography>
       <Box
         display="flex"
@@ -51,7 +51,7 @@ const CardRow = ({ heading, data }: CardRowProps) => {
           />
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 
