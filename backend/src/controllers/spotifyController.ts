@@ -266,8 +266,7 @@ export const getUserTopGenres = async (req: Request, res: Response) => {
     const sortedGenres = Object.entries(genresCount).sort(
       (a, b) => b[1] - a[1]
     );
-    const topGenres = sortedGenres.map(([genre]) => genre);
-
+    const topGenres = sortedGenres.slice(0, 25).map(([genre]) => genre);
     res.json({ topGenres });
   } catch (error) {
     console.error("Failed to fetch user top genres:", error);

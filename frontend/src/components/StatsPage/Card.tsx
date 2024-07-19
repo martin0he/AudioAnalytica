@@ -66,33 +66,35 @@ const Card = ({
               <Link
                 href={titleLink}
                 target="_blank"
-                color="secondary"
                 sx={{
                   textDecoration: "none",
-                  "&:hover": { textDecoration: "underline" },
+                  "&:hover": {
+                    textDecoration: "underline",
+                    textDecorationColor: "primary",
+                  },
                 }}
               >
                 <Typography
                   fontWeight={450}
-                  sx={{ mt: "-7.5px" }}
-                  fontSize={26}
+                  sx={{ mt: "-4.5px" }}
+                  fontSize={20}
                 >
                   {title}
                 </Typography>
               </Link>
               {subtitle && (
-                <Typography fontWeight={400} sx={{ mt: "-4px" }} fontSize={15}>
+                <Typography fontWeight={400} sx={{ mt: "-2px" }} fontSize={13}>
                   {subtitle}
                 </Typography>
               )}
             </Box>
           ) : (
             <Box display="flex" flexDirection="column">
-              <Typography sx={{ mt: "-7.5px" }} fontSize={26}>
+              <Typography fontWeight={450} sx={{ mt: "-4.5px" }} fontSize={20}>
                 {title}
               </Typography>
               {subtitle && (
-                <Typography sx={{ mt: "-4px" }} fontSize={15}>
+                <Typography fontWeight={400} sx={{ mt: "-2px" }} fontSize={13}>
                   {subtitle}
                 </Typography>
               )}
