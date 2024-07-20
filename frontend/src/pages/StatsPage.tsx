@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import CardRow from "../components/StatsPage/CardRow";
 import { useTopArtists } from "../hooks/useTopArtists";
 import { useTopSongs } from "../hooks/useTopSongs";
@@ -10,13 +10,26 @@ import TopAudioFeaturesGrid from "../components/StatsPage/TopAudioFeaturesGrid";
 import { useTopFeatures } from "../hooks/useTopFeatures";
 
 const StatsPage = () => {
-  const { artists } = useTopArtists();
-  const { songs } = useTopSongs();
-  const { recentSongs } = useRecentSongs();
-  const { features } = useTopFeatures();
+  const { artists, loading: artistsLoading } = useTopArtists();
+  const { songs, loading: songsLoading } = useTopSongs();
+  const { recentSongs, loading: recentSongsLoading } = useRecentSongs();
+  const { features, loading: featuresLoading } = useTopFeatures();
   const windowWidth = useWindowWidth();
 
-  return (
+  return artistsLoading ||
+    songsLoading ||
+    recentSongsLoading ||
+    featuresLoading ? (
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      width="100%"
+      height="100vh"
+    >
+      <CircularProgress color="primary" />
+    </Box>
+  ) : (
     <Box
       display="flex"
       justifyContent="flex-start"
