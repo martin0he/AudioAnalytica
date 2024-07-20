@@ -12,8 +12,6 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
     <Box display="flex" flexDirection="column" width="38%" height="100%">
       <Box
         position="relative"
-        display="flex"
-        width="100%"
         height="27%"
         margin="5px"
         sx={{

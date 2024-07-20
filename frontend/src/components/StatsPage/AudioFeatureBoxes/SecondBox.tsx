@@ -53,7 +53,7 @@ const SecondBox = ({
         margin="5px"
         display="flex"
         flexDirection="column"
-        height="100%"
+        height="105%"
         width="35%"
         rowGap="10px"
       >
