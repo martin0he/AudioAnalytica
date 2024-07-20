@@ -51,7 +51,7 @@ const StatsPage = () => {
         >
           <GenreWordCloud width={windowWidth * 0.9} height={280} />
         </Box>
-        <Box mt="30px">
+        <Box mt="30px" width="100%">
           <Typography fontSize={24} fontFamily={"Abril Fatface"}>
             Personal Insights
           </Typography>

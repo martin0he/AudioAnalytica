@@ -39,7 +39,7 @@ const TopAudioFeaturesGrid = ({ audioFeatures }: TopAudioFeaturesGridProps) => {
       flexDirection="column"
       rowGap="5px"
       width="100%"
-      marginY="25px"
+      marginY="40px"
     >
       <Typography>Average Audio Features</Typography>
       <Box
@@ -47,6 +47,7 @@ const TopAudioFeaturesGrid = ({ audioFeatures }: TopAudioFeaturesGridProps) => {
         flexDirection="row"
         width="100%"
         marginBottom="30px"
+        marginTop="5px"
         height={{ md: "400px", sm: "350px", xs: "300px" }}
       >
         {/**first box of 3 */}
