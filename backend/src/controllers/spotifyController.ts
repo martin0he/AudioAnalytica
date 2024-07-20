@@ -98,7 +98,7 @@ export const getUserTopSongs = async (req: Request, res: Response) => {
       },
       params: {
         limit: req.query.limit || 20, // Fetch top songs, default to 20 if not specified
-        time_range: req.query.time_range || "short_term",
+        time_range: req.query.time_range || "medium_term",
       },
     });
 
@@ -127,7 +127,7 @@ export const getUserTopArtists = async (req: Request, res: Response) => {
         Authorization: `Bearer ${accessToken}`,
       },
       params: {
-        time_range: req.query.time_range || "short_term",
+        time_range: req.query.time_range || "medium_term",
         limit: req.query.limit || 20,
       },
     });
@@ -356,5 +356,33 @@ export const getUserListeningTime = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Failed to fetch user listening time:", error);
     res.status(500).json({ error: "Failed to fetch user listening time" });
+  }
+};
+
+export const getUserTopFeatures = async (req: Request, res: Response) => {
+  const accessToken = req.headers.authorization?.split(" ")[1];
+
+  if (!accessToken) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const { data } = await axios.get(`${SPOTIFY_API_URL}/audio-features`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        ids: req.query.ids,
+      },
+    });
+
+    res.json(data.audio_features);
+  } catch (error) {
+    console.error("Failed to fetch top track features:", error);
+    if (axios.isAxiosError(error) && error.response) {
+      res.status(error.response.status).json({ error: error.response.data });
+    } else {
+      res.status(500).json({ error: "Failed to fetch top track features" });
+    }
   }
 };

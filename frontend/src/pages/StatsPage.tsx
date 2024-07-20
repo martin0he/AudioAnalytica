@@ -6,11 +6,14 @@ import GenreWordCloud from "../components/StatsPage/GenreWordCloud";
 import useWindowWidth from "../hooks/useWindowWidth";
 import RecentTracksGrid from "../components/StatsPage/RecentTracksGrid";
 import { useRecentSongs } from "../hooks/useRecentSongs";
+import TopAudioFeaturesGrid from "../components/StatsPage/TopAudioFeaturesGrid";
+import { useTopFeatures } from "../hooks/useTopFeatures";
 
 const StatsPage = () => {
   const { artists } = useTopArtists();
   const { songs } = useTopSongs();
   const { recentSongs } = useRecentSongs();
+  const { features } = useTopFeatures();
   const windowWidth = useWindowWidth();
 
   return (
@@ -52,6 +55,7 @@ const StatsPage = () => {
           Personal Insights
         </Typography>
         <RecentTracksGrid data={recentSongs} />
+        <TopAudioFeaturesGrid audioFeatures={features} />
       </Box>
     </Box>
   );

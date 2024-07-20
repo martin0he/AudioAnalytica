@@ -76,25 +76,65 @@ const Card = ({
               >
                 <Typography
                   fontWeight={450}
-                  sx={{ mt: "-4.5px" }}
+                  sx={{
+                    mt: "-4.5px",
+                    display: "-webkit-box",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: 2,
+                  }}
                   fontSize={20}
                 >
                   {title}
                 </Typography>
               </Link>
               {subtitle && (
-                <Typography fontWeight={400} sx={{ mt: "-2px" }} fontSize={13}>
+                <Typography
+                  fontWeight={400}
+                  sx={{
+                    mt: "-2px",
+                    display: "-webkit-box",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: 2,
+                  }}
+                  fontSize={13}
+                >
                   {subtitle}
                 </Typography>
               )}
             </Box>
           ) : (
             <Box display="flex" flexDirection="column">
-              <Typography fontWeight={450} sx={{ mt: "-4.5px" }} fontSize={20}>
+              <Typography
+                fontWeight={450}
+                sx={{
+                  mt: "-4.5px",
+                  display: "-webkit-box",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: 2,
+                }}
+                fontSize={20}
+              >
                 {title}
               </Typography>
               {subtitle && (
-                <Typography fontWeight={400} sx={{ mt: "-2px" }} fontSize={13}>
+                <Typography
+                  fontWeight={400}
+                  sx={{
+                    mt: "-2px",
+                    display: "-webkit-box",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: 2,
+                  }}
+                  fontSize={13}
+                >
                   {subtitle}
                 </Typography>
               )}

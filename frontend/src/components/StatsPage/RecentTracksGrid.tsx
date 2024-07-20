@@ -18,7 +18,7 @@ const RecentTracksGrid = ({ data }: RecentTracksGridProps) => {
       <Grid container spacing={0} marginTop="12px">
         {data.map((item) => (
           <Grid item key={item.track.id} xs="auto">
-            <Tooltip title={item.track.name}>
+            <Tooltip arrow title={item.track.name}>
               <Box
                 component="img"
                 src={item.track.album.images[0].url}

@@ -33,7 +33,7 @@ const ScrollableGridContainer = styled(Grid)({
 
 const scrollAnimation = keyframes`
   0% { transform: translateY(0); } /* Start at the top */
-  48%, 51.2% { transform: translateY(calc(-100% + 350px)); } /* Transition to bottom and pause for 0.8 seconds */
+  48%, 51.2% { transform: translateY(calc(-100%)); } /* Transition to bottom and pause for 0.8 seconds */
   100% { transform: translateY(0); } /* Transition back to top */
 `;
 

@@ -9,6 +9,7 @@ import {
   getUserRecentTracks,
   getUserSavedAlbums,
   getUserTopArtists,
+  getUserTopFeatures,
   getUserTopGenres,
   getUserTopSongs,
   loginToSpotify,
@@ -37,5 +38,6 @@ router.get("/userRecentSongs", getUserRecentTracks);
 
 // misc
 router.get("/userListeningTime", getUserListeningTime);
+router.get("/userTopFeatures", getUserTopFeatures);
 
 export default router;
