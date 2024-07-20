@@ -25,10 +25,10 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
       >
         <Typography
           color={theme.palette.background.default}
-          fontSize={36}
           fontFamily="Abril Fatface"
           sx={{
             position: "absolute",
+            fontSize: { md: 36, sm: 26, xs: 20 },
             top: -3,
             left: 2,
             m: "5px",
@@ -38,9 +38,9 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
         </Typography>
         <Typography
           color={theme.palette.background.default}
-          fontSize={36}
           fontFamily="Abril Fatface"
           sx={{
+            fontSize: { md: 36, sm: 26, xs: 20 },
             position: "absolute",
             bottom: 0,
             right: 5,
@@ -67,9 +67,9 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
         >
           <Typography
             color={theme.palette.background.default}
-            fontSize={36}
             fontFamily="Abril Fatface"
             sx={{
+              fontSize: { md: 36, sm: 26, xs: 20 },
               position: "absolute",
               top: 46,
               left: -40,
@@ -80,9 +80,9 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
           </Typography>
           <Typography
             color={theme.palette.background.default}
-            fontSize={36}
             fontFamily="Abril Fatface"
             sx={{
+              fontSize: { md: 36, sm: 26, xs: 20 },
               position: "absolute",
               top: 0,
               right: 3,
@@ -108,9 +108,9 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
         >
           <Typography
             color={theme.palette.background.default}
-            fontSize={36}
             fontFamily="Abril Fatface"
             sx={{
+              fontSize: { md: 36, sm: 26, xs: 20 },
               position: "absolute",
               top: -7,
               left: 3,
@@ -121,9 +121,9 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
           </Typography>
           <Typography
             color={theme.palette.background.default}
-            fontSize={36}
             fontFamily="Abril Fatface"
             sx={{
+              fontSize: { md: 36, sm: 26, xs: 20 },
               position: "absolute",
               bottom: -2,
               right: 4,

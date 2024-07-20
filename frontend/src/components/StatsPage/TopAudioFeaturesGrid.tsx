@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Feature } from "../../hooks/useTopFeatures";
 import FirstBox from "./AudioFeatureBoxes/FirstBox";
+import SecondBox from "./AudioFeatureBoxes/SecondBox";
 
 interface TopAudioFeaturesGridProps {
   audioFeatures: Feature[];
@@ -40,15 +41,34 @@ const TopAudioFeaturesGrid = ({ audioFeatures }: TopAudioFeaturesGridProps) => {
       marginY="25px"
     >
       <Typography>Average Audio Features</Typography>
-      <Box display="flex" flexDirection="row" width="100%" height="400px">
+      <Box
+        display="flex"
+        flexDirection="row"
+        width="100%"
+        height={{ md: "400px", sm: "350px", xs: "300px" }}
+      >
         {/**first box of 3 */}
         <FirstBox
           acoustic={averageFeatureValue(allAcousticness)}
           instrumental={averageFeatureValue(allInstrumentalness)}
           valence={averageFeatureValue(allValence)}
         />
-        {/**second box of 4 */}
-        {/**third box of 2 */}
+        <Box
+          display="flex"
+          flexDirection="column"
+          height="100%"
+          width="62%"
+          marginX="6px"
+        >
+          {/**second box of 4 */}
+          <SecondBox
+            danceability={averageFeatureValue(allDanceability)}
+            liveness={averageFeatureValue(allLiveness)}
+            energy={averageFeatureValue(allEnergy)}
+            tempo={averageFeatureValue(allTempo)}
+          />
+          {/**third box of 2 */}
+        </Box>
       </Box>
     </Box>
   );

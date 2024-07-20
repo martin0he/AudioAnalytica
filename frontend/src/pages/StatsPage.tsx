@@ -55,7 +55,7 @@ const StatsPage = () => {
           <Typography fontSize={24} fontFamily={"Abril Fatface"}>
             Personal Insights
           </Typography>
-          <RecentTracksGrid data={recentSongs} />
+          {/*<RecentTracksGrid data={recentSongs} />*/}
           <TopAudioFeaturesGrid audioFeatures={features} />
         </Box>
       </Box>
