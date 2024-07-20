@@ -1,7 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Box, duration, Typography } from "@mui/material";
 import { Feature } from "../../hooks/useTopFeatures";
 import FirstBox from "./AudioFeatureBoxes/FirstBox";
 import SecondBox from "./AudioFeatureBoxes/SecondBox";
+import ThirdBox from "./AudioFeatureBoxes/ThirdBox";
 
 interface TopAudioFeaturesGridProps {
   audioFeatures: Feature[];
@@ -45,6 +46,7 @@ const TopAudioFeaturesGrid = ({ audioFeatures }: TopAudioFeaturesGridProps) => {
         display="flex"
         flexDirection="row"
         width="100%"
+        marginBottom="30px"
         height={{ md: "400px", sm: "350px", xs: "300px" }}
       >
         {/**first box of 3 */}
@@ -59,6 +61,7 @@ const TopAudioFeaturesGrid = ({ audioFeatures }: TopAudioFeaturesGridProps) => {
           height="100%"
           width="62%"
           marginX="6px"
+          rowGap="26px"
         >
           {/**second box of 4 */}
           <SecondBox
@@ -68,6 +71,10 @@ const TopAudioFeaturesGrid = ({ audioFeatures }: TopAudioFeaturesGridProps) => {
             tempo={averageFeatureValue(allTempo)}
           />
           {/**third box of 2 */}
+          <ThirdBox
+            speechiness={averageFeatureValue(allSpeechiness)}
+            duration={convertToMinutes(averageFeatureValue(allDuration))}
+          />
         </Box>
       </Box>
     </Box>
