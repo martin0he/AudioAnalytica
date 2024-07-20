@@ -15,9 +15,9 @@ import UserSavedAlbumsGrid from "../components/HomePage/UserSavedAlbumsGrid";
 
 const HomePage = () => {
   const { user } = useUser();
-  const { playlists } = useUserPlaylists();
-  const { artists } = useFollowingArtists();
-  const { albums } = useSavedAlbums();
+  const { playlists, loading: playlistsLoading } = useUserPlaylists();
+  const { artists, loading: artistsLoading } = useFollowingArtists();
+  const { albums, loading: albumsLoading } = useSavedAlbums();
 
   const theme = useTheme();
 
@@ -38,58 +38,71 @@ const HomePage = () => {
       >
         Welcome, {user.display_name}
       </Typography>
-      <Grid
-        container
-        padding="20px"
-        width="93%"
-        height="75%"
-        display="flex"
-        alignItems="flex-start"
-        justifyContent="center"
-        marginTop="25px"
-      >
-        <Grid
-          item
-          xs={4}
-          width="fit-content"
-          height="100%"
+      {playlistsLoading || artistsLoading || albumsLoading ? (
+        <Box
+          padding="20px"
+          width="93%"
+          height="75%"
           display="flex"
-          flexDirection="column"
-          justifyContent="flex-start"
-          sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
+          alignItems="center"
+          justifyContent="center"
         >
-          <Typography marginBottom="10px">You Follow</Typography>
-          <UserFollowingArtistsGrid artists={artists} />
-        </Grid>
+          <CircularProgress color="primary" />
+        </Box>
+      ) : (
+        <Grid
+          container
+          padding="20px"
+          width="93%"
+          height="75%"
+          display="flex"
+          alignItems="flex-start"
+          justifyContent="center"
+          marginTop="25px"
+        >
+          <Grid
+            item
+            xs={4}
+            width="fit-content"
+            height="100%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="flex-start"
+            sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
+          >
+            <Typography marginBottom="10px">You Follow</Typography>
+            <UserFollowingArtistsGrid artists={artists} />
+          </Grid>
 
-        <Grid
-          item
-          xs={4}
-          width="fit-content"
-          height="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="flex-start"
-          sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
-        >
-          <Typography marginBottom="10px">Your Playlists</Typography>
-          <UserPlaylistsGrid playlists={playlists} />
-        </Grid>
+          <Grid
+            item
+            xs={4}
+            width="fit-content"
+            height="100%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="flex-start"
+            sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
+          >
+            <Typography marginBottom="10px">Your Playlists</Typography>
+            <UserPlaylistsGrid playlists={playlists} />
+          </Grid>
 
-        <Grid
-          item
-          xs={4}
-          width="fit-content"
-          height="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="flex-start"
-          sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
-        >
-          <Typography marginBottom="10px">Saved Albums</Typography>
-          <UserSavedAlbumsGrid albums={albums} />
+          <Grid
+            item
+            xs={4}
+            width="fit-content"
+            height="100%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="flex-start"
+            sx={{ alignItems: { sm: "flex-start", xs: "center" } }}
+          >
+            <Typography marginBottom="10px">Saved Albums</Typography>
+            <UserSavedAlbumsGrid albums={albums} />
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Box>
   ) : (
     <Box
