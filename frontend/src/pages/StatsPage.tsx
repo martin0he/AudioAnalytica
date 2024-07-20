@@ -49,13 +49,15 @@ const StatsPage = () => {
           alignItems="flex"
           marginY="30px"
         >
-          <GenreWordCloud width={windowWidth * 0.92} height={280} />
+          <GenreWordCloud width={windowWidth * 0.9} height={280} />
         </Box>
-        <Typography fontSize={24} fontFamily={"Abril Fatface"}>
-          Personal Insights
-        </Typography>
-        <RecentTracksGrid data={recentSongs} />
-        <TopAudioFeaturesGrid audioFeatures={features} />
+        <Box mt="30px">
+          <Typography fontSize={24} fontFamily={"Abril Fatface"}>
+            Personal Insights
+          </Typography>
+          <RecentTracksGrid data={recentSongs} />
+          <TopAudioFeaturesGrid audioFeatures={features} />
+        </Box>
       </Box>
     </Box>
   );
