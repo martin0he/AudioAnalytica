@@ -24,7 +24,7 @@ const ThirdBox = ({ speechiness, duration }: ThirdBoxProps) => {
         <Typography
           fontFamily="Abril Fatface"
           color={theme.palette.background.default}
-          fontSize={{ md: 36, sm: 26, xs: 20 }}
+          fontSize={{ md: 33, sm: 24, xs: 18 }}
           position="absolute"
           bottom="2px"
           left="8px"
@@ -34,7 +34,7 @@ const ThirdBox = ({ speechiness, duration }: ThirdBoxProps) => {
         <Typography
           fontFamily="Abril Fatface"
           color={theme.palette.background.default}
-          fontSize={{ md: 36, sm: 26, xs: 20 }}
+          fontSize={{ md: 33, sm: 24, xs: 18 }}
           position="absolute"
           top="2px"
           right="8px"
@@ -57,7 +57,7 @@ const ThirdBox = ({ speechiness, duration }: ThirdBoxProps) => {
         <Typography
           fontFamily="Abril Fatface"
           color={theme.palette.background.default}
-          fontSize={{ md: 36, sm: 26, xs: 20 }}
+          fontSize={{ md: 33, sm: 24, xs: 18 }}
           position="absolute"
           top="2px"
           left="8px"
@@ -67,7 +67,7 @@ const ThirdBox = ({ speechiness, duration }: ThirdBoxProps) => {
         <Typography
           fontFamily="Abril Fatface"
           color={theme.palette.background.default}
-          fontSize={{ md: 36, sm: 26, xs: 20 }}
+          fontSize={{ md: 33, sm: 24, xs: 18 }}
           position="absolute"
           bottom="2px"
           right="8px"

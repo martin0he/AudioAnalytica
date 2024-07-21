@@ -30,7 +30,7 @@ const SecondBox = ({
       >
         <Typography
           fontFamily="Abril Fatface"
-          fontSize={{ md: 36, sm: 26, xs: 20 }}
+          fontSize={{ md: 33, sm: 24, xs: 18 }}
           color={theme.palette.background.default}
           position="absolute"
           bottom="3px"
@@ -40,7 +40,7 @@ const SecondBox = ({
         </Typography>
         <Typography
           fontFamily="Abril Fatface"
-          fontSize={{ md: 36, sm: 26, xs: 20 }}
+          fontSize={{ md: 33, sm: 24, xs: 18 }}
           color={theme.palette.background.default}
           position="absolute"
           top="3px"
@@ -68,7 +68,7 @@ const SecondBox = ({
         >
           <Typography
             fontFamily="Abril Fatface"
-            fontSize={{ md: 36, sm: 26, xs: 20 }}
+            fontSize={{ md: 33, sm: 24, xs: 18 }}
             color={theme.palette.background.default}
             position="absolute"
             top="-4px"
@@ -78,7 +78,7 @@ const SecondBox = ({
           </Typography>
           <Typography
             fontFamily="Abril Fatface"
-            fontSize={{ md: 36, sm: 26, xs: 20 }}
+            fontSize={{ md: 33, sm: 24, xs: 18 }}
             color={theme.palette.background.default}
             position="absolute"
             bottom="-3px"
@@ -98,7 +98,7 @@ const SecondBox = ({
         >
           <Typography
             fontFamily="Abril Fatface"
-            fontSize={{ md: 36, sm: 26, xs: 20 }}
+            fontSize={{ md: 33, sm: 24, xs: 18 }}
             color={theme.palette.background.default}
             position="absolute"
             bottom="0px"
@@ -108,7 +108,7 @@ const SecondBox = ({
           </Typography>
           <Typography
             fontFamily="Abril Fatface"
-            fontSize={{ md: 36, sm: 26, xs: 20 }}
+            fontSize={{ md: 33, sm: 24, xs: 18 }}
             color={theme.palette.background.default}
             position="absolute"
             top="-3px"
@@ -132,7 +132,7 @@ const SecondBox = ({
       >
         <Typography
           fontFamily="Abril Fatface"
-          fontSize={{ md: 36, sm: 26, xs: 20 }}
+          fontSize={{ md: 33, sm: 24, xs: 18 }}
           color={theme.palette.background.default}
           sx={{ rotate: "-90deg" }}
           position="absolute"

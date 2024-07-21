@@ -26,7 +26,7 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
           fontFamily="Abril Fatface"
           sx={{
             position: "absolute",
-            fontSize: { md: 36, sm: 26, xs: 20 },
+            fontSize: { md: 33, sm: 24, xs: 18 },
             top: -3,
             left: 2,
             m: "5px",
@@ -38,7 +38,7 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
           color={theme.palette.background.default}
           fontFamily="Abril Fatface"
           sx={{
-            fontSize: { md: 36, sm: 26, xs: 20 },
+            fontSize: { md: 33, sm: 24, xs: 18 },
             position: "absolute",
             bottom: 0,
             right: 5,
@@ -67,7 +67,7 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
             color={theme.palette.background.default}
             fontFamily="Abril Fatface"
             sx={{
-              fontSize: { md: 36, sm: 26, xs: 20 },
+              fontSize: { md: 33, sm: 24, xs: 18 },
               position: "absolute",
               top: 46,
               left: -40,
@@ -80,7 +80,7 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
             color={theme.palette.background.default}
             fontFamily="Abril Fatface"
             sx={{
-              fontSize: { md: 36, sm: 26, xs: 20 },
+              fontSize: { md: 33, sm: 24, xs: 18 },
               position: "absolute",
               top: 0,
               right: 3,
@@ -108,7 +108,7 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
             color={theme.palette.background.default}
             fontFamily="Abril Fatface"
             sx={{
-              fontSize: { md: 36, sm: 26, xs: 20 },
+              fontSize: { md: 33, sm: 24, xs: 18 },
               position: "absolute",
               top: -7,
               left: 3,
@@ -121,7 +121,7 @@ const FirstBox = ({ acoustic, instrumental, valence }: FirstBoxProps) => {
             color={theme.palette.background.default}
             fontFamily="Abril Fatface"
             sx={{
-              fontSize: { md: 36, sm: 26, xs: 20 },
+              fontSize: { md: 33, sm: 24, xs: 18 },
               position: "absolute",
               bottom: -2,
               right: 4,
