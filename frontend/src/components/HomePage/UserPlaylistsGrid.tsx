@@ -1,13 +1,6 @@
-import {
-  Box,
-  CircularProgress,
-  Grid,
-  keyframes,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Grid, Tooltip } from "@mui/material";
 import { Playlist } from "../../hooks/useUserPlaylists";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { styled } from "@mui/system";
 
 interface UserPlaylistsGridProps {
@@ -31,23 +24,52 @@ const ScrollableGridContainer = styled(Grid)({
   padding: "10px",
 });
 
-const scrollAnimation = keyframes`
-  0% { transform: translateY(0); } /* Start at the top */
-  48%, 51.2% { transform: translateY(calc(-100% + 350px)); } /* Transition to bottom and pause for 0.8 seconds */
-  100% { transform: translateY(0); } /* Transition back to top */
-`;
-
-const ScrollableContent = styled("div")(({ theme }) => ({
+const ScrollableContent = styled("div")({
   display: "flex",
   flexWrap: "wrap",
-  animation: `${scrollAnimation} 25s linear infinite`,
-}));
+});
 
 const UserPlaylistsGrid = ({ playlists }: UserPlaylistsGridProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const scrollableContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollableContainerRef.current;
+    if (!scrollContainer) return;
+
+    let scrollStep = 0.3;
+    let scrollPosition = 0;
+    let direction = 1; // 1 for down, -1 for up
+
+    const performScroll = () => {
+      if (!scrollContainer) return;
+
+      const totalScrollHeight = scrollContainer.scrollHeight;
+      const visibleHeight = scrollContainer.clientHeight;
+
+      scrollPosition += scrollStep * direction;
+
+      if (
+        scrollPosition + visibleHeight >= totalScrollHeight ||
+        scrollPosition <= 0
+      ) {
+        direction *= -1; // Reverse direction
+      }
+
+      scrollContainer.scrollTop = scrollPosition;
+
+      requestAnimationFrame(performScroll);
+    };
+
+    const scrollTimeout = setTimeout(() => {
+      requestAnimationFrame(performScroll);
+    }, 1000);
+
+    return () => clearTimeout(scrollTimeout);
+  }, [playlists]);
 
   return (
-    <ScrollableGridContainer container spacing={1}>
+    <ScrollableGridContainer container spacing={1} ref={scrollableContainerRef}>
       <ScrollableContent>
         {playlists && playlists.length > 0 ? (
           playlists.map((playlist, index) => (

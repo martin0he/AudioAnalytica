@@ -1,12 +1,5 @@
-import {
-  Box,
-  CircularProgress,
-  Grid,
-  keyframes,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import { useState } from "react";
+import { Box, CircularProgress, Grid, Tooltip } from "@mui/material";
+import { useState, useEffect, useRef } from "react";
 import { styled } from "@mui/system";
 import { Artist } from "../../hooks/useFollowingArtists";
 
@@ -31,25 +24,54 @@ const ScrollableGridContainer = styled(Grid)({
   padding: "10px",
 });
 
-const scrollAnimation = keyframes`
-  0% { transform: translateY(0); } /* Start at the top */
-  48%, 51.2% { transform: translateY(calc(-100%)); } /* Transition to bottom and pause for 0.8 seconds */
-  100% { transform: translateY(0); } /* Transition back to top */
-`;
-
-const ScrollableContent = styled("div")(({ theme }) => ({
+const ScrollableContent = styled("div")({
   display: "flex",
   flexWrap: "wrap",
-  animation: `${scrollAnimation} 25s linear infinite`,
-}));
+});
 
 const UserFollowingArtistsGrid = ({
   artists,
 }: UserFollowingArtistsGridProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const scrollableContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollableContainerRef.current;
+    if (!scrollContainer) return;
+
+    let scrollStep = 0.25;
+    let scrollPosition = 0;
+    let direction = 1; // 1 for down, -1 for up
+
+    const performScroll = () => {
+      if (!scrollContainer) return;
+
+      const totalScrollHeight = scrollContainer.scrollHeight;
+      const visibleHeight = scrollContainer.clientHeight;
+
+      scrollPosition += scrollStep * direction;
+
+      if (
+        scrollPosition + visibleHeight >= totalScrollHeight ||
+        scrollPosition <= 0
+      ) {
+        direction *= -1; // Reverse direction
+      }
+
+      scrollContainer.scrollTop = scrollPosition;
+
+      requestAnimationFrame(performScroll);
+    };
+
+    const scrollTimeout = setTimeout(() => {
+      requestAnimationFrame(performScroll);
+    }, 1000);
+
+    return () => clearTimeout(scrollTimeout);
+  }, [artists]);
 
   return (
-    <ScrollableGridContainer container spacing={1}>
+    <ScrollableGridContainer container spacing={1} ref={scrollableContainerRef}>
       <ScrollableContent>
         {artists && artists.length > 0 ? (
           artists.map((artist, index) => (
