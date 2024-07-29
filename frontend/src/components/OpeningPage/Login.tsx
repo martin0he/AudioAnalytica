@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Button, Typography, useTheme } from "@mui/material";
-import LoginIcon from "@mui/icons-material/Login";
+import { Typography, useTheme } from "@mui/material";
 
 const Login = () => {
   const handleLogin = async () => {
@@ -41,6 +40,7 @@ const Login = () => {
 
         // Redirect or navigate to another page after successful login
         // Example: window.location.href = '/dashboard';
+        window.location.href = "/home";
       } else {
         console.error("No access token received");
       }
@@ -60,38 +60,28 @@ const Login = () => {
   const theme = useTheme();
 
   return (
-    <Button
+    <Typography
+      fontWeight={600}
       onClick={handleLogin}
       sx={{
-        textTransform: "none",
-        padding: "15px",
-        borderRadius: "14px",
-        backgroundColor: theme.palette.secondary.light,
-        boxShadow: "-1px 2px 3px #575459",
-        transition: "transform 0.3s ease-in-out",
-        "&:hover": {
-          transform: "translateY(4px)",
-          boxShadow: "-2px 3px 5px #575459",
-          backgroundColor: theme.palette.secondary.dark,
+        cursor: "pointer",
+        textDecoration: "underline",
+        display: "flex",
+        alignItems: "center",
+        columnGap: "10px",
+        fontSize: {
+          xs: "18px",
+          sm: "21px",
+          md: "23px",
         },
+        color: theme.palette.secondary.main,
+        "&:hover": { color: theme.palette.secondary.dark },
       }}
     >
-      <Typography
-        fontWeight={400}
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          columnGap: "10px",
-          fontSize: {
-            xs: "15px",
-            sm: "17px",
-            md: "20px",
-          },
-        }}
-      >
-        Sign in with Spotify <LoginIcon fontSize="inherit" />
-      </Typography>
-    </Button>
+      <span>
+        Sign in with <span style={{ color: "#1DB954" }}>Spotify</span>
+      </span>
+    </Typography>
   );
 };
 

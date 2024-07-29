@@ -1,8 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Tooltip, Typography } from "@mui/material";
 import Login from "../components/OpeningPage/Login";
 import { isAuthenticated } from "../App";
 import Welcome from "../components/OpeningPage/Welcome";
 import Typewriter from "typewriter-effect";
+import InfoIcon from "@mui/icons-material/Info";
 import useSpotifyUser from "../hooks/useSpotifyUser";
 
 const OpeningPage = () => {
@@ -16,6 +17,33 @@ const OpeningPage = () => {
       alignItems="center"
       flexDirection="column"
     >
+      <Tooltip
+        arrow
+        placement="left-end"
+        title={
+          <Typography
+            padding="5px"
+            color="white"
+            sx={{ fontSize: { md: "21px", sm: "17px", xs: "15px" } }}
+          >
+            This website is meant for non-commercial use only. Your listening
+            data is not recorded or saved in any way, and any judgements or
+            critiques made by the neural network are entirely biased as they are
+            based upon my personal preferences. This project is open-source and
+            the code can be found on GitHub as part of my personal portfolio
+            @martin0he.
+          </Typography>
+        }
+      >
+        <InfoIcon
+          sx={{
+            fontSize: { md: "40px", sm: "30px", xs: "20px" },
+            position: "absolute",
+            top: "5px",
+            right: "10px",
+          }}
+        />
+      </Tooltip>
       <Box
         width="wrap-content"
         height="wrap-content"
@@ -53,8 +81,8 @@ const OpeningPage = () => {
         <Typography
           sx={{
             fontSize: {
-              xs: "15px",
-              sm: "17px",
+              xs: "17px",
+              sm: "18.5px",
               md: "20px",
               lg: "30px",
               xl: "40px",
@@ -63,10 +91,14 @@ const OpeningPage = () => {
         >
           <Typewriter
             options={{
-              strings: ["AI Music Analyzer", "Spotify Stats"],
+              strings: [
+                "AI Music Analyzer",
+                "Music Stats",
+                "Let Me Judge Your Taste",
+              ],
               autoStart: true,
               loop: true,
-              delay: 75,
+              delay: 45,
               skipAddStyles: true,
             }}
           />
