@@ -4,14 +4,14 @@ import cors from "cors";
 import dotenv from "dotenv";
 import spotifyRoutes from "./routes/spotifyRoutes";
 import neuralNetRoutes from "./routes/neuralNetRoutes";
-
+// -*- coding: utf-8 -*-
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 // Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({ type: "application/json", limit: "10mb" }));
 app.use(cors());
 
 // Routes

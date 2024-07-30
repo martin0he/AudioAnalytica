@@ -291,6 +291,7 @@ export const getUserRecentTracks = async (req: Request, res: Response) => {
         },
         params: {
           before: new Date().getTime(),
+          limit: 50,
         },
       }
     );

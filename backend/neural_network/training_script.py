@@ -1,4 +1,5 @@
 # backend/neural_network/train_neural_network.py
+# -*- coding: utf-8 -*-
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -10,7 +11,7 @@ import os
 # Load the CSV data
 current_dir = os.path.dirname(__file__)
 data_path = os.path.join(current_dir, 'features_data.csv') 
-df = pd.read_csv(data_path)
+df = pd.read_csv(data_path, encoding='utf-8')
 
 # Extract features
 features = df[['acousticness', 'valence', 'instrumentalness', 'danceability', 'liveness', 'energy', 'tempo', 'speechiness', 'duration_ms']].values
@@ -44,7 +45,7 @@ model = Sequential([
 model.compile(optimizer=Adam(learning_rate=0.001), loss='mean_squared_error')
 
 # Train the model
-model.fit(features, labels, epochs=35, batch_size=32)
+model.fit(features, labels, epochs=50, batch_size=32)
 
 # Save the model
 model.save('neural_network_model.keras')

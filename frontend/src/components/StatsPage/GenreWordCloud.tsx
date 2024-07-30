@@ -1,13 +1,14 @@
 import { Text } from "@visx/text";
 import { scaleLog } from "@visx/scale";
 import Wordcloud from "@visx/wordcloud/lib/Wordcloud";
-import { useTopGenres } from "../../hooks/useTopGenres";
+import { Genre } from "../../hooks/useTopGenres";
 import { Box, Typography } from "@mui/material";
 
 interface ExampleProps {
   width: number;
   height: number;
   showControls?: boolean;
+  genres: Genre;
 }
 
 export interface WordData {
@@ -25,9 +26,11 @@ function wordFreq(words: string[]): WordData[] {
 
 const colors = ["#0630c6", "#3e67f9", "#916ef2", "#e69bf3"];
 
-export default function GenreWordCloud({ width, height }: ExampleProps) {
-  const { genres } = useTopGenres();
-
+export default function GenreWordCloud({
+  width,
+  height,
+  genres,
+}: ExampleProps) {
   const words = wordFreq(genres.topGenres);
 
   const fontScale = scaleLog({

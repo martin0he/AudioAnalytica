@@ -8,12 +8,14 @@ import RecentTracksGrid from "../components/StatsPage/RecentTracksGrid";
 import { useRecentSongs } from "../hooks/useRecentSongs";
 import TopAudioFeaturesGrid from "../components/StatsPage/TopAudioFeaturesGrid";
 import { useTopFeatures } from "../hooks/useTopFeatures";
+import { useTopGenres } from "../hooks/useTopGenres";
 
 const StatsPage = () => {
   const { artists, loading: artistsLoading } = useTopArtists();
   const { songs, loading: songsLoading } = useTopSongs();
   const { recentSongs, loading: recentSongsLoading } = useRecentSongs();
   const { features, loading: featuresLoading } = useTopFeatures();
+  const { genres, loading: genresLoading } = useTopGenres();
   const windowWidth = useWindowWidth();
 
   return artistsLoading ||
@@ -62,7 +64,11 @@ const StatsPage = () => {
           alignItems="flex"
           marginY="30px"
         >
-          <GenreWordCloud width={windowWidth * 0.9} height={280} />
+          <GenreWordCloud
+            width={windowWidth * 0.9}
+            height={280}
+            genres={genres}
+          />
         </Box>
         <Box mt="30px" width="100%">
           <Typography fontSize={24} fontFamily={"Abril Fatface"}>

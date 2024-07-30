@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && concurrently \"npm run flask\" \"npm run server\"",
-    "start:dev": "concurrently \"npm run flask:dev\" \"nodemon src/server.ts\"",
+    "start": "npm run build && concurrently \"npm run server\" \"npm run flask\"",
+    "start:dev": "concurrently \"nodemon src/server.ts\" \"npm run flask:dev\"",
     "build": "tsc -p .",
     "server": "nodemon dist/server.js",
     "flask": "cd neural_network && FLASK_APP=flask_app.py PYTHONIOENCODING=utf-8 python -m flask run",

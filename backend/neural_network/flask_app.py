@@ -1,4 +1,5 @@
 # backend/neural_network/flask_app.py
+# -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify
 import numpy as np
 import tensorflow as tf
