@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && nodemon dist/server.js",
-    "start:dev": "nodemon src/server.ts",
-    "build": "tsc -p ."
+    "start": "npm run build && concurrently \"npm run flask\" \"npm run server\"",
+    "start:dev": "concurrently \"npm run flask:dev\" \"nodemon src/server.ts\"",
+    "build": "tsc -p .",
+    "server": "nodemon dist/server.js",
+    "flask": "cd neural_network && FLASK_APP=flask_app.py PYTHONIOENCODING=utf-8 python -m flask run",
+    "flask:dev": "cd neural_network && FLASK_APP=flask_app.py FLASK_ENV=development PYTHONIOENCODING=utf-8 python -m flask run"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +25,8 @@
     "express": "^4.19.2",
     "nodemon": "^3.1.4",
     "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

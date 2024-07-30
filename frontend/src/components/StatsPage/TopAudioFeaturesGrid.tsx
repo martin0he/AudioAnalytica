@@ -1,6 +1,5 @@
 import {
   Box,
-  duration,
   Tooltip,
   Typography,
   useMediaQuery,
