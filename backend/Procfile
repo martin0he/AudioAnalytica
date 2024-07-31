@@ -1,0 +1,2 @@
+web: npm run start
+flask: cd neural_network && gunicorn app:app
