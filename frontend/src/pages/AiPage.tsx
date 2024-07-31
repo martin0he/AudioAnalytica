@@ -2,23 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTopFeatures } from "../hooks/useTopFeatures";
 import { averageFeatureValue } from "../components/StatsPage/TopAudioFeaturesGrid";
-import {
-  Alert,
-  Box,
-  Button,
-  IconButton,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Box, Button, Typography } from "@mui/material";
+import Typewriter, { Options } from "typewriter-effect";
 
 const AiPage = () => {
   const { features, loading: featuresLoading } = useTopFeatures();
   const [score, setScore] = useState<number | null>(null);
   const [alertMessage, setAlertMessage] = useState<string>("");
-  const [open, setOpen] = useState(false);
-
-  const theme = useTheme();
 
   const scoreToGrade = (score: number) => {
     if (score < 0.2) {
@@ -53,7 +43,10 @@ const AiPage = () => {
   };
 
   const fetchData = async () => {
-    setOpen(true);
+    if (featuresLoading) {
+      setAlertMessage("Please wait for the data to load.");
+      return;
+    }
     try {
       const allAcousticness = features.map((feature) => feature.acousticness);
       const allDanceability = features.map((feature) => feature.danceability);
@@ -106,40 +99,8 @@ const AiPage = () => {
       marginTop="95px"
       paddingY="15px"
       paddingX="27px"
+      flexDirection="column"
     >
-      {open && (
-        <Alert
-          icon={false}
-          sx={{
-            width: "40%",
-            position: "absolute",
-            bottom: "35px",
-            left: "30px",
-            borderRadius: "15px",
-            color: theme.palette.background.default,
-            background:
-              "linear-gradient(to bottom, rgba(238,107,187,0.8) 40%, rgba(208,1,1,0.8) 100%)", // Gradient background
-            border: "2.5px solid transparent", // Transparent border to maintain border radius
-            backgroundClip: "padding-box", // Ensure background color is within the border
-            WebkitBackgroundClip: "padding-box", // Ensure compatibility with Webkit browsers
-            display: "flex",
-            alignItems: "center",
-          }}
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="medium"
-              onClick={() => setOpen(false)}
-              sx={{ marginBottom: "5px" }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-        >
-          {alertMessage}
-        </Alert>
-      )}
       <Box
         display="flex"
         flexDirection="column"
@@ -169,6 +130,29 @@ const AiPage = () => {
         >
           evaluate
         </Button>
+      </Box>
+
+      <Box
+        width="45%"
+        height="100%"
+        display="flex"
+        alignItems="flex-end"
+        justifyContent="flex-start"
+        padding="15px"
+      >
+        <Typography>
+          <Typewriter
+            options={
+              {
+                strings: [alertMessage],
+                autoStart: true,
+                delay: 40,
+                pauseFor: 100000,
+                skipAddStyles: true,
+              } as Partial<Options>
+            }
+          />
+        </Typography>
       </Box>
 
       <Box
