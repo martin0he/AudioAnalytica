@@ -76,6 +76,7 @@ const AiPage = () => {
       );
       const fetchedScore = evaluationResponse.data.score;
       setScore(fetchedScore);
+      console.log(score);
       setAlertMessage(scoreMessage(fetchedScore));
     } catch (error) {
       console.error(error);

@@ -1,51 +1,59 @@
-# backend/neural_network/train_neural_network.py
-# -*- coding: utf-8 -*-
-import numpy as np
 import pandas as pd
-import tensorflow as tf
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout
-from tensorflow.keras.optimizers import Adam
-import os
+from tensorflow.keras.layers import Dense
+import joblib
 
-# Load the CSV data
-current_dir = os.path.dirname(__file__)
-data_path = os.path.join(current_dir, 'features_data.csv') 
-df = pd.read_csv(data_path, encoding='utf-8')
+# Load dataset
+data = pd.read_csv('features_data.csv')  # Replace with the path to your CSV file
 
-# Extract features
-features = df[['acousticness', 'valence', 'instrumentalness', 'danceability', 'liveness', 'energy', 'tempo', 'speechiness', 'duration_ms']].values
+# Preprocess data
+X = data[['acousticness', 'valence', 'instrumentalness', 'danceability', 'liveness', 'energy', 'tempo', 'speechiness', 'duration_ms']]
+# Ideal values
+ideal_values = {
+    'acousticness': 0.211,
+    'valence': 0.58,
+    'instrumentalness': 0.137,
+    'danceability': 0.667,
+    'liveness': 0.122,
+    'energy': 0.685,
+    'tempo': 127,
+    'speechiness': 0.08,
+    'duration_ms': 4 * 60 * 1000 + 1 * 1000  # 4 minutes and 1 second in milliseconds
+}
 
-# Define benchmarks
-benchmarks = np.array([0.211, 0.58, 0.137, 0.667, 0.122, 0.685, 127, 0.08, 240000])  # duration in milliseconds
+# Calculate "good taste" score (1 - normalized Euclidean distance)
+def calculate_good_taste_score(row):
+    distance = np.sqrt(((row - pd.Series(ideal_values))**2).sum())
+    max_distance = np.sqrt(sum([(1 - value)**2 for value in ideal_values.values()]))  # Max possible distance
+    score = 1 - (distance / max_distance)
+    return score
 
-# Normalize the duration and tempo
-features[:, 8] = features[:, 8] / 60000  # Convert duration from ms to minutes
-features[:, 6] = features[:, 6] / 200  # Normalize tempo if necessary
+y = X.apply(calculate_good_taste_score, axis=1)
 
-# Normalize the benchmarks in the same way
-benchmarks[8] = benchmarks[8] / 60000  # Convert duration from ms to minutes
-benchmarks[6] = benchmarks[6] / 200  # Normalize tempo
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
 
-# Calculate labels as the similarity to benchmarks (1 - MSE)
-labels = np.mean((features - benchmarks) ** 2, axis=1)
-labels = 1 - labels / np.max(labels)
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
 
-# Define the model
+# Define neural network model
 model = Sequential([
-    Dense(64, input_dim=9, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.001)),
-    Dropout(0.3),
-    Dense(32, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.001)),
-    Dropout(0.3),
-    Dense(16, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.001)),
-    Dense(1, activation='sigmoid')  # Output layer with sigmoid to bound output between 0 and 1
+    Dense(64, input_dim=X_train.shape[1], activation='relu'),
+    Dense(32, activation='relu'),
+    Dense(1, activation='sigmoid')
 ])
 
-# Compile the model
-model.compile(optimizer=Adam(learning_rate=0.001), loss='mean_squared_error')
+model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
 
-# Train the model
-model.fit(features, labels, epochs=50, batch_size=32)
+# Train model
+model.fit(X_train, y_train, epochs=50, batch_size=32, validation_split=0.2)
 
-# Save the model
-model.save('neural_network_model.keras')
+# Evaluate model
+loss, mae = model.evaluate(X_test, y_test)
+print(f"Model Mean Absolute Error: {mae}")
+
+# Save model and scaler
+model.save('music_taste_model.h5')
+joblib.dump(scaler, 'scaler.pkl')

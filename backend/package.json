@@ -7,9 +7,10 @@
     "start": "npm run build && concurrently \"npm run server\" \"npm run flask\"",
     "start:dev": "concurrently \"nodemon src/server.ts\" \"npm run flask:dev\"",
     "build": "tsc -p .",
+    "test": "nodemon src/server.ts",
     "server": "nodemon dist/server.js",
-    "flask": "cd neural_network && FLASK_APP=flask_app.py PYTHONIOENCODING=utf-8 python -m flask run",
-    "flask:dev": "cd neural_network && FLASK_APP=flask_app.py FLASK_ENV=development PYTHONIOENCODING=utf-8 python -m flask run"
+    "flask": "cd neural_network && cross-env FLASK_APP=app.py PYTHONIOENCODING=utf-8 python -m flask run",
+    "flask:dev": "cd neural_network && cross-env FLASK_APP=app.py FLASK_ENV=development PYTHONIOENCODING=utf-8 python -m flask run"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "typescript": "^5.5.3"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
   }
 }
