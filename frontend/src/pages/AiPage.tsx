@@ -92,14 +92,14 @@ const AiPage = () => {
   return (
     <Box
       display="flex"
-      justifyContent="flex-start"
-      alignItems="flex-start"
+      flexDirection="column"
+      justifyContent="space-between"
+      alignItems="center"
       width="calc(100vw - 80px)"
       height="calc(100vh - 150px)"
       marginTop="95px"
       paddingY="15px"
       paddingX="27px"
-      flexDirection="column"
     >
       <Box
         display="flex"
@@ -133,14 +133,15 @@ const AiPage = () => {
       </Box>
 
       <Box
-        width="45%"
-        height="100%"
+        position="fixed"
+        bottom="20px"
+        left="25px"
         display="flex"
-        alignItems="flex-end"
-        justifyContent="flex-start"
+        alignItems="center"
+        justifyContent="center"
         padding="15px"
       >
-        <Typography>
+        <Typography sx={{ fontSize: { md: "25px", sm: "22px", xs: "19px" } }}>
           <Typewriter
             options={
               {
@@ -156,7 +157,7 @@ const AiPage = () => {
       </Box>
 
       <Box
-        position="absolute"
+        position="fixed"
         bottom="20px"
         right="25px"
         display="flex"
