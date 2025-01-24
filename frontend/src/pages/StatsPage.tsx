@@ -21,7 +21,8 @@ const StatsPage = () => {
   return artistsLoading ||
     songsLoading ||
     recentSongsLoading ||
-    featuresLoading ? (
+    featuresLoading ||
+    genresLoading ? (
     <Box
       display="flex"
       justifyContent="center"

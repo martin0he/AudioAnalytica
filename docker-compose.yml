@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: ./frontend
+      target: dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - project-network
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - FLASK_URL=http://neural_network:5000
+    depends_on:
+      - neural_network
+    networks:
+      - project-network
+
+  neural_network:
+    build:
+      context: ./neural_network
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./neural_network:/app
+    environment:
+      - FLASK_ENV=development
+    command: flask run --host=0.0.0.0 --port=5000
+    networks:
+      - project-network
+
+networks:
+  project-network:
+    driver: bridge

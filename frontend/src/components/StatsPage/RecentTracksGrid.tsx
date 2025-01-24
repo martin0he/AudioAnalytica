@@ -1,4 +1,4 @@
-import { Box, Grid, Tooltip, Typography } from "@mui/material";
+import { Box, Tooltip, Typography } from "@mui/material";
 import { Song } from "../../hooks/useTopSongs";
 
 interface RecentTracksGridProps {

@@ -10,7 +10,7 @@ export const NeuralNetController = async (req: Request, res: Response) => {
     }
 
     // Send data to the Python API
-    const response = await axios.post("http://127.0.0.1:5000/predict", {
+    const response = await axios.post("http://neural_network:5000/predict", {
       data: userData,
     });
 

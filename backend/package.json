@@ -4,13 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && concurrently \"npm run server\" \"npm run flask\"",
-    "start:dev": "concurrently \"nodemon src/server.ts\" \"npm run flask:dev\"",
+    "start": "npm run build && npm run server",
+    "start:dev": "nodemon src/server.ts",
     "build": "tsc -p .",
     "test": "nodemon src/server.ts",
-    "server": "nodemon dist/server.js",
-    "flask": "cd neural_network && cross-env FLASK_APP=app.py PYTHONIOENCODING=utf-8 python -m flask run",
-    "flask:dev": "cd neural_network && cross-env FLASK_APP=app.py FLASK_ENV=development PYTHONIOENCODING=utf-8 python -m flask run"
+    "server": "nodemon dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +27,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2"
   }
 }

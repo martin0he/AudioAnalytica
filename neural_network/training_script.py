@@ -7,7 +7,7 @@ from tensorflow.keras.layers import Dense
 import joblib
 
 # Load dataset
-data = pd.read_csv('features_data.csv')  # Replace with the path to your CSV file
+data = pd.read_csv('features_data.csv')  
 
 # Preprocess data
 X = data[['acousticness', 'valence', 'instrumentalness', 'danceability', 'liveness', 'energy', 'tempo', 'speechiness', 'duration_ms']]
