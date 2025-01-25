@@ -8,11 +8,17 @@ import neuralNetRoutes from "./routes/neuralNetRoutes";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = parseInt(process.env.PORT || "3001", 10);
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://audioanalytica.net"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
 
 // Routes
 app.use("/api/spotify", spotifyRoutes);
@@ -23,6 +29,6 @@ app.get("/", (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log("Server is running on http://0.0.0.0:3001");
 });

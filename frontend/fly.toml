@@ -1,0 +1,18 @@
+app = "audio-analytica-frontend"
+primary_region = "bos"
+
+[build]
+
+[http_service]
+  internal_port = 80   # Matches Nginx's internal port
+  force_https = true   # Ensures HTTPS is enforced
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[experimental]
+  private_network = false # Keep false since this is a public frontend app
+
+[env]
+  NODE_ENV = "production" # Explicitly set to production

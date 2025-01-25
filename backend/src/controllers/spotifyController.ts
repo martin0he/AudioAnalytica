@@ -10,7 +10,7 @@ export const getTestData = async (req: Request, res: Response) => {
 
 const clientId = process.env.SPOTIFY_CLIENT_ID || "";
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET || "";
-const redirectUri = process.env.SPOTIFY_REDIRECT_URI || "";
+const redirectUri = process.env.SPOTIFY_REDIRECT_URI || "http://localhost:3000";
 const SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize";
 const SPOTIFY_API_URL = "https://api.spotify.com/v1";
 

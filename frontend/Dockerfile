@@ -3,19 +3,22 @@ FROM node:18 as dev
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
-COPY . .
+COPY . . 
 EXPOSE 3000
 CMD ["npm", "start"]
 
-# Production Stage
+# Build Stage
 FROM node:18 as build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
-COPY . .
+COPY . . 
 RUN npm run build
 
+# Production Stage
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
+

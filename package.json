@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.3",
     "concurrently": "^8.2.2"
   },
   "scripts": {

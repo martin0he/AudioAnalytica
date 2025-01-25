@@ -1,8 +1,6 @@
-
 # AudioAnalytica
 
 Full-stack web app that uses the Spotify Web API to display relevant data about your listening habits, music tastes, and top artists/tracks/genres/etc.
-
 
 ## Tech Stack
 
@@ -12,11 +10,9 @@ Full-stack web app that uses the Spotify Web API to display relevant data about 
 
 **API:** Spotify Web API
 
-
 ## Authors
 
 - [@Martin Hema](https://www.github.com/martin0he)
-
 
 ## Run Locally
 
@@ -54,10 +50,10 @@ Install dependencies in the backend directory
 ```
 
 Run app (in project directory)
+
 ```bash
   npm start
 ```
-
 
 ## Environment Variables
 
@@ -78,12 +74,12 @@ Frontend .env:
 
 tip: make sure the `REACT_APP_BACKEND_URL` in the frontend contains the same port number as `PORT` in the backend.
 
-
 ## Demo
+
 ![ezgif-7-2edacecac1](https://github.com/user-attachments/assets/e4d840da-bce1-4201-842f-44da48883ceb)
 
-
 ## Screenshots
+
 ![image](https://github.com/user-attachments/assets/fc3fab8f-df89-46af-beb6-99bf3b0134bf)
 ![image](https://github.com/user-attachments/assets/99060cee-06b9-419f-b879-07108e3e8918)
 ![image](https://github.com/user-attachments/assets/c1dc0105-ae3e-4de6-9153-44cb37a2c906)
@@ -94,10 +90,3 @@ tip: make sure the `REACT_APP_BACKEND_URL` in the frontend contains the same por
 ![image](https://github.com/user-attachments/assets/b5b71715-2448-427a-8a1c-a1234473c829)
 ![image](https://github.com/user-attachments/assets/b43433fa-440e-43bf-9fde-cf294e1ebb4a)
 ![image](https://github.com/user-attachments/assets/b50bed7d-4b0c-4f97-8bfd-715dbdd9a7ce)
-
-
-
-
-
-
-

@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const NeuralNetController = async (req: Request, res: Response) => {
+  const FLASK_URL = process.env.FLASK_URL || "http://localhost:5000";
   try {
     const userData = req.body;
 
@@ -10,7 +13,7 @@ export const NeuralNetController = async (req: Request, res: Response) => {
     }
 
     // Send data to the Python API
-    const response = await axios.post("http://neural_network:5000/predict", {
+    const response = await axios.post(`${FLASK_URL}/predict`, {
       data: userData,
     });
 

@@ -1,13 +1,14 @@
 import React from "react";
 import axios from "axios";
 import { Typography, useTheme } from "@mui/material";
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_URL || "http://localhost:3001";
 
 const Login = () => {
   const handleLogin = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/spotify/login`
-      );
+      const response = await axios.get(`${BACKEND_URL}/api/spotify/login`);
+      console.log(BACKEND_URL);
       const authUrl = response.data.authUrl;
 
       if (authUrl) {
@@ -30,7 +31,7 @@ const Login = () => {
   const getAccessToken = async (code: any) => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/spotify/accessToken?code=${code}`
+        `${BACKEND_URL}/api/spotify/accessToken?code=${code}`
       );
       const accessToken = response.data.accessToken;
 
