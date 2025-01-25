@@ -67,8 +67,8 @@ const OpeningPage = () => {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontSize: {
-              xs: "60px",
-              sm: "80px",
+              xs: "40px",
+              sm: "65px",
               md: "100px",
               lg: "120px",
               xl: "140px",
